@@ -1,0 +1,48 @@
+﻿<!--
+Dado el documento ejericicio1.html:
+Los elementos pares de la lista (lista2, lista4, lista6) deben ser de color azul.
+Los elementos impares de la lista (lista1, lista3, lista5) deben ser de color rojo.
+Los titulos que tengan como atributo una clase que empiece por “tit” deben ir en azul.
+Añadir el contenido “Contenido1” al primer título (primer hijo del body).
+La primera línea del primer párrafo irá en mayúsculas.
+Insertar el contenido “Párrafo 1: ” antes del contenido del primer párrafo.
+Los párrafos que sean hermanos de un elemento <ul> y que aparecen detrás en el código HTML aunque no necesariamente de forma inmediata van en color verde
+Todos los elementos que no sean párrafos van en fuente Arial. Los párrafos que sean hijos directos de un elemento div van en fuente Courier.
+Enlaces que contengan un atributo href que contenga con la cadena "goo" van en gris.
+La primera letra del segundo párrafo va en minúscula y en rojo.
+!Enlaces dentro de un div que contengan un atributo href que acabe con la cadena "com" van en rojo. 
+Antes del ultimo título (que es el último hijo del body) inserta el contenido "Contenido 2".
+NOTA: Los cambios que tienes que realizar deben hacerse en la hoja de estilo asociada. No debes cambiar el código HTML de la página.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>ejercicio1</title>
+<link rel="stylesheet" href="ejercicio1.css" />
+</head>
+<body>
+	<h1 class='titulo'>Ejercicio1 titulo1</h1>
+	<a href="http://www.google.es">Enlace a google</a>
+	<a href="http://www.as.com">Enlace a as</a>
+	
+	<ul>
+		<span>Lista</span>
+		<li>lista1</li>
+		<li>lista2</li>
+		<li>lista3</li>
+		<li>lista4</li>
+		<li>lista5</li>
+		<li>lista6</li>
+	</ul>
+	<a href="http://www.marca.com">Enlace a marca</a>
+	<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+	<p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"</p>
+	<h2>Ejercicio1 titulo2</h2>
+	<h2 class='titulo'>titulo3</h2>
+	<div>
+		<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+		<a href="http://www.marca.com">Enlace a marca</a>
+	</div>
+	<h2>titulo4</h2>
+</body>
+</html>

@@ -1,0 +1,32 @@
+#recuadro1{
+  border-radius: 20px;  
+  background-color:#ddd;
+  width:200px;
+  padding:10px;
+	/*
+	
+	shadow
+	*/
+}
+
+
+#recuadro2{
+  border-radius: 20px 40px 40px 20px;  
+  background-color:#aa0;
+  width:200px;
+  padding:10px;
+  margin-top:50px;
+	/*
+	
+	shadow
+	*/
+}
+
+h3{
+	text-shadow: #ac6af0 20px 10px 0.5px;
+}
+
+body {
+	/*
+	*/
+}

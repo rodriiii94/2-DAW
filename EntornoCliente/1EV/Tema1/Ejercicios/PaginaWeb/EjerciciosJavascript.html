@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EjerciciosII Javascript</title>
+    <link rel="stylesheet" href="css/EjerciciosJavascript.css">
+    <script src="js/EjerciciosJavascript.js"></script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>FIGURAS</legend>
+
+            <label for="alto"><b>Alto</b></label>
+            <input type="number" id="altoCuadrado">
+
+            <label for="ancho"><b>Ancho</b></label>
+            <input type="number" id="anchoCuadrado">
+            <button onclick="cuadrado()">Cuadrado</button>
+            <div id="resultadoCuadrado"></div>
+
+
+            <label for="alto"><b>Alto</b></label>
+            <input type="number" id="altoDiamante">
+            <button onclick="diamante()">Diamante</button>
+            <div id="resultadoDiamante"></div>
+
+    </fieldset>
+    <fieldset>
+        <legend>COLORES</legend>
+
+        <p style="color: blue;"><b>["Azul", "Amarillo", "Rosa", "Verde", "Negro", "Rojo", "Blanco"]</b></p>
+
+        <label for="color"><b>Color</b></label>
+        <input type="text" id="color">
+        <button onclick="colores()">Enviar</button> <br>
+
+        <div id="salida" style="color: blue; font-weight: bold;"></div>
+    </fieldset>
+
+    <fieldset>
+        <legend>FUENTES</legend>
+
+        <select name="fuente" id="fuente" onchange="fuente()">
+            <option value="minecraft">Minecraft</option>
+            <option value="soul">Soul</option>
+            <option value="danger">Danger</option>
+        </select>
+
+        <div id="salidaFuente" style="color: blue; margin-top: 10px;">Texto de Muestra</div>
+    </fieldset>
+
+    <fieldset>
+        <legend>VIDEO</legend>
+
+        <label for="alto"><b>Alto</b></label>
+        <input type="range" id="alto" onchange="video()">
+
+        <label for="ancho"><b>Ancho</b></label>
+        <input type="range" id="ancho" onchange="video()"> <br>
+
+        <iframe src="https://www.youtube.com/embed/wmDe2kbw_eY?si=uumBqOv8UNi_S5BV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="video"></iframe>
+
+    </fieldset>
+
+</body>
+
+</html>

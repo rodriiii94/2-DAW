@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 en Raya</title>
+    <link rel="stylesheet" href="css/juego.css">
+</head>
+
+<body>
+    <div class="contenedor">
+
+        <!-- Título -->
+        <h1>Juego 3 en Raya</h1>
+
+        <!-- Opciones de juego -->
+        <div class="game-options">
+            <label>
+                <input type="radio" name="jugadores" value="1" id="btnUnJugador"> 1 Jugador
+            </label>
+            <label>
+                <input type="radio" name="jugadores" value="2" id="btnDosJugadores"> 2 Jugadores
+            </label>
+        </div>
+
+        <!-- Tablero de juego -->
+        <div id="tablero" class="claseTablero">
+            <div class="celda" data-index="0"></div>
+            <div class="celda" data-index="1"></div>
+            <div class="celda" data-index="2"></div>
+            <div class="celda" data-index="3"></div>
+            <div class="celda" data-index="4"></div>
+            <div class="celda" data-index="5"></div>
+            <div class="celda" data-index="6"></div>
+            <div class="celda" data-index="7"></div>
+            <div class="celda" data-index="8"></div>
+        </div>
+
+        <!-- Estado del juego -->
+        <div id="estado" class="claseEstado"></div>
+
+        <!-- Botón de reinicio -->
+        <button id="resetBtn" class="reset-btn">Reiniciar Juego</button>
+    </div>
+
+    <!-- Enlace a script de javascript -->
+    <script src="js/juego.js" type="text/javascript"></script>
+</body>
+
+</html>

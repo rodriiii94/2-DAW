@@ -1,0 +1,52 @@
+﻿ul li:nth-child(2n + 1) {
+  color: blue;
+}
+
+ul li:nth-child(2n) {
+  color: red;
+}
+
+ul~p {
+  color: green;
+}
+
+h1[class^="tit"], h2[class^="tit"] {
+    color: blue;
+}
+
+h1:first-child::before {
+    content: "Contenido1 ";
+}
+
+p:first-of-type::first-line {
+    text-transform: uppercase;
+}
+
+body > p:first-of-type::before {
+    content: "Párrafo 1: ";
+}
+
+:not(p) {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div > p {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a[href*="goo"] {
+    color: gray;
+}
+
+p:nth-of-type(2)::first-letter {
+    color: red;
+    text-transform: lowercase;
+}
+
+div a[href$="com"] {
+    color: red;
+}
+
+h2:last-child::before {
+    content: "Contenido 2 ";
+}

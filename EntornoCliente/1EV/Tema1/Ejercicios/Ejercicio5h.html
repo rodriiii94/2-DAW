@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/Ejercicio5h.js"></script>
+    <link rel="stylesheet" href="css/Ejercicio5h.css">
+</head>
+<body>
+    <h1>Ejercicio 5</h1>
+
+    <!-- FORMATO TEXTO -->
+    <div class="texto">
+        <fieldset>
+            <legend>FORMATO TEXTO</legend>
+
+            <label for="inputText">Texto:</label>
+            <input type="text" id="inputText" value="" oninput="updateText()">
+
+            <label for="textColor">Color Texto:</label>
+            <select id="textColor" onchange="updateText()">
+                <option value="black">Negro</option>
+                <option value="blue" selected>Azul</option>
+                <option value="red">Rojo</option>
+                <option value="green">Verde</option>
+                <option value="yellow">Amarillo</option>
+                <option value="orange">Naranja</option>
+            </select>
+
+            <label for="textSize">Tamaño:</label>
+            <input type="number" id="textSize" value="4" min="1" max="7" onchange="updateText()">
+            <br>
+
+            <label>Estilo:</label>
+            <input type="checkbox" id="bold" onclick="updateText()">Negrita
+            <input type="checkbox" id="italic" onclick="updateText()">Cursiva
+            <input type="checkbox" id="underline" onclick="updateText()">Subrayado
+            <br>
+
+            <label>Fuente:</label>
+            <select id="fontFamily" onchange="updateText()">
+                <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
+                <option value="'Bookman Old Style', serif">Bookman Old Style</option>
+                <option value="'Century Gothic', sans-serif">Century Gothic</option>
+            </select>
+        </fieldset>
+    </div>
+
+    <!-- FORMATO CONTENEDOR -->
+    <div class="container">
+        <fieldset>
+            <legend>FORMATO CONTENEDOR</legend>
+
+            <label for="bgColor">Fondo:</label>
+            <input type="color" id="bgColor" value="#ffffff" onchange="updateText()">
+            <br>
+
+            <label>Borde:</label>
+            <input type="radio" name="borderColor" value="grey" checked onclick="updateText()">Gris
+            <input type="radio" name="borderColor" value="yellow" onclick="updateText()">Amarillo
+            <input type="radio" name="borderColor" value="pink" onclick="updateText()">Rosa
+        </fieldset>
+    </div>
+
+    <!-- OUTPUT -->
+    <div id="output">
+        
+    </div>
+</body>
+</html>

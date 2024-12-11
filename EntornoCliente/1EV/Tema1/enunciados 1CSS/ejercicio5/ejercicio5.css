@@ -1,0 +1,18 @@
+#container {
+width:960px;
+margin: 0 auto;
+background-color: gray;
+background-image: url(?),url(?),url(?);
+background-repeat: no-repeat, no-repeat, repeat-y;
+background-position: top, bottom, 0;
+}
+h1{
+padding:?px ?px ?px ?px;
+}
+h2{
+padding:10px 0px 0px 120px;
+}
+p{
+padding:30px 120px 110px 120px;
+}
+

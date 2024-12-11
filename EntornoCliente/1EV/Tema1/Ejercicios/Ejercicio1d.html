@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1d</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let diaSemana = prompt("Escribe el dia de la semana:").toUpperCase();
+        let esDiaLaboral;
+
+        switch (diaSemana) {
+            case "LUNES":
+            case "MARTES":
+            case "MIÉRCOLES":
+            case "JUEVES":
+            case "VIERNES":
+                esDiaLaboral = true;
+                break;
+            case "SABADO":
+            case "DOMINGO":
+                esDiaLaboral = false;
+                break;
+            default:
+                esDiaLaboral = "No es un dia de la semana";
+                break;
+        }
+
+        if (esDiaLaboral === true) {
+            alert("Es un dia laboral");
+        } else if (esDiaLaboral === false) {
+            alert("No es un dia laboral");
+        } else {
+            alert(esDiaLaboral);
+        }
+    </script>
+</body>
+</html>
+
+
+

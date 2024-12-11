@@ -1,0 +1,70 @@
+@font-face {
+  font-family: "minecraft";
+  src: url(../fonts/minecraft/Minecraft.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "danger";
+  src: url(../fonts/miedo/Danger.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "soul";
+  src: url(../fonts/soul/Soul.otf) format("opentype");
+}
+
+body {
+  font-family: "Courier New", Courier, monospace;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  flex-direction: column;
+}
+
+legend {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: gold;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-left: 10px;
+  color: blue;
+}
+
+input {
+  border: 1px solid purple;
+}
+
+button {
+  background-color: purple;
+  border-radius: 2px;
+  color: white;
+  border: none;
+  /* padding: 10px 20px; */
+  margin: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(126, 83, 126);
+  transition: all 0.25s;
+}
+
+#cuadrado {
+  /* padding: 20px; */
+  margin: 20px;
+  float: left;
+}
+
+#anchoDiamante {
+  margin-left: 200px;
+}
+
+iframe {
+  padding: 20px;
+  width: 560px;
+  height: 315px;
+}

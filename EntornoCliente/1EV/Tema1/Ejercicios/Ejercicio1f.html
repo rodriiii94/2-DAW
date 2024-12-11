@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio1f</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let primerNum = parseInt(prompt("Introduce el primer numero"));
+        let operacion = prompt("Introduce la operacion a realizar");
+        let segundoNum;
+        
+        if (operacion == "r"){
+
+            alert("El resultado de la raiz cuadrada es: " + Math.round(Math.sqrt(primerNum)));
+
+        } else {
+            
+            segundoNum = parseInt(prompt("Introduce el segundo numero"));     
+            
+            switch (operacion) {
+                case "+":
+                    alert("El resultado de la suma es: " + (primerNum + segundoNum));
+                    break;
+
+                case "-":
+                    alert("El resultado de la resta es: " + (primerNum - segundoNum));
+                    break;
+
+                case "*":
+                    alert("El resultado de la multiplicacion es: " + (primerNum * segundoNum));
+                    break;
+
+                case "/":
+                    alert("El resultado de la division es: " + (primerNum / segundoNum));
+                    break;
+
+                case "^":
+                    alert("El resultado de la potencia es: " + Math.pow(primerNum, segundoNum));
+                    break;
+
+                default:
+                    alert("Operacion no valida");
+                    break;
+            }
+
+        }
+
+    </script>
+</body>
+</html>

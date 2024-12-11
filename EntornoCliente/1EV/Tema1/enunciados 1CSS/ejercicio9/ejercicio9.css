@@ -1,0 +1,10 @@
+#capa1 { 
+display: box; 
+display: -moz-box; 
+display: -webkit-box; 
+box-orient: ?; 
+-moz-box-orient: ?; 
+-webkit-box-orient: ?;
+}
+.e1, .e2, .e3, .e4 { background-color: ?; margin: 5px; }
+.e1 { box-ordinal-group: 4; -moz-box-ordinal-group: 4; -webkit-box-ordinal-group: 4; border: 1px solid red; box-flex: 1; -moz-box-flex: 1; webkit-box-flex: 1; }

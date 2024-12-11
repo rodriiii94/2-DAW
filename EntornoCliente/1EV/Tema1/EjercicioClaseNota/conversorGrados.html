@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Grados</title>
+    <link rel="stylesheet" href="css/conversorGrados.css">
+    <script src="js/conversorGrados.js" type="text/javascript"></script>
+</head>
+<body>
+    <div id="cajaPrincipal">
+        <h2>CONVERSOR DE GRADOS</h2>
+        <table>
+            <tr>
+                <td>
+                    <img src="images/Celsius.png" width="100px">
+                    <input type="number" id="celsius" onchange="convertirFarenheit()" onkeyup="convertirFarenheit()">
+                </td>
+                <td>
+                    <p> = </p>
+                </td>
+                <td>    
+                    <img src="images/farenheit.png" width="100px">
+                    <input type="number" id="farenheit" onchange="convertirCelsius()" onkeyup="convertirCelsius()">
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

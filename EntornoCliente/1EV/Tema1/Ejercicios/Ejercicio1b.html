@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        do {
+            var nombre = prompt("Escribe tu nombre:");;
+            var apellidos = prompt("Escribe tus apellidos:");;
+
+            var es = confirm("Eres tu " + nombre + " " + apellidos + "?");
+
+            if (es == true) {
+                document.write("Hola " + nombre + " " + apellidos);
+            }
+
+        } while (es == false);
+
+    </script>
+</body>
+
+</html>

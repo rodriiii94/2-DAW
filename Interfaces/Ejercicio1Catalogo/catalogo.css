@@ -1,0 +1,42 @@
+body {
+  background-color: #bbd0e5;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+}
+
+h1 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: rgb(139, 162, 239);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+h2 {
+  color: #343a40;
+  background-color: antiquewhite;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+p {
+  margin-left: 100px;
+}
+
+b {
+  color: rgb(67, 20, 21);
+}
+
+div {
+  flex-direction: column;
+  background-color: antiquewhite;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+img {
+    width: 500px;
+}

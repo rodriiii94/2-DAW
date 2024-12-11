@@ -1,0 +1,53 @@
+/* @font-face {
+  font-family: "cs";
+  src: url('./font/cs_regular.ttf');
+} */
+
+body {
+  font-family: "Arial";
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-image: url("https://preview.redd.it/counter-strike-2-wallpaper-based-off-of-the-logo-but-v0-emj6kvnpn1mc1.png?width=1080&crop=smart&auto=webp&s=e75ee5cf6ff3f529f61e8b56ff77dc347f98f386");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+main {
+  font-size: larger;
+  text-align: justify;
+  width: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 20px;
+  text-align: justify;
+}
+
+img {
+  width: 60%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.link {
+  color: green;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: red;
+}
+
+.link:visited {
+  color: blue;
+}
+
+.link:active {
+  color: yellow;
+}
+

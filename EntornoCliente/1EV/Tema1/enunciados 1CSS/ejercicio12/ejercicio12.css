@@ -1,0 +1,23 @@
+p.texto {
+color: white;
+font-weight: bold;
+text-align: center;
+line-height: 30px;
+}
+
+#multiple {
+position: absolute;
+left: 20px;
+top: 150px;
+width: 200px;
+height: 60px;
+background-color: darkblue;
+
+/* Define transición*/
+}
+#multiple:hover {
+width: 400px;
+height: 120px;
+opacity: 0.3;
+}
+

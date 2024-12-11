@@ -1,0 +1,151 @@
+/* Estilos generales */
+/*html,
+body {
+  height: 100%;
+}*/
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+/* Estilos del encabezado */
+header {
+  background: #005f73;
+  color: #ffffff;
+  padding-top: 30px;
+  min-height: 70px;
+  border-bottom: #0a9396 3px solid;
+}
+header a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+header ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  overflow: hidden;
+}
+header li {
+  float: left;
+  display: inline;
+  padding: 0 20px 0 20px;
+}
+header #branding {
+  float: left;
+}
+header #branding h1 {
+  margin: 0;
+}
+header nav {
+  float: right;
+  margin-top: 10px;
+}
+header .highlight,
+header .current a {
+  color: #e9d8a6;
+  font-weight: bold;
+}
+header a:hover {
+  color: #ffffff;
+  font-weight: bold;
+}
+#Bank {
+  color: #ffffff;
+}
+/* Estilos del contenido principal */
+main {
+  padding: 20px 0;
+  flex: 1;
+}
+h1 {
+  color: #005f73;
+}
+/* Estilos del formulario */
+form {
+  background: #f4f4f4;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+textarea {
+  height: 100px;
+}
+input[type="submit"] {
+  display: inline-block;
+  background: #005f73;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background: #0a9396;
+}
+/* Estilos de mensajes */
+.error,
+.success {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.error {
+  background-color: #ffcccb;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+}
+.success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  color: #155724;
+}
+/* Estilos del pie de página */
+footer {
+  padding: 20px;
+  margin-top: 20px;
+  color: #ffffff;
+  background-color: #005f73;
+  text-align: center;
+  flex-shrink: 0;
+}
+/* Media queries para diseño responsivo */
+@media (max-width: 768px) {
+  header #branding,
+  header nav,
+  header nav li,
+  #boxes .box {
+    float: none;
+    text-align: center;
+    width: 100%;
+  }
+  header {
+    padding-bottom: 20px;
+  }
+}

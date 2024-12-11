@@ -1,0 +1,41 @@
+@font-face {
+  font-family: 'Formula1';
+  src: url('./fonts/Formula1-Regular.otf');
+}
+
+body {
+  font-family: 'Formula1';
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-image: url("https://www.tagheuer.com/on/demandware.static/-/Library-Sites-TagHeuer-Shared/default/dwe49471af/images/1-Partnership-REVAMP/motorsports/PCC-Large-Image.jpg");
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  text-align: center;
+}
+
+.padding-20 {
+  padding: 20px;
+  border: 2px solid black;
+}
+
+.margin-10 {
+  margin: 20px;
+  border: 3px solid green;
+}

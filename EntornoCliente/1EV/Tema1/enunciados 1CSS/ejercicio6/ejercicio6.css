@@ -1,0 +1,16 @@
+#contenido {
+  background: url(torre.jpg);
+  background-repeat: no-repeat;
+
+  border: 20px solid transparent;
+  -moz-border-image: -moz-linear-gradient(left, #3acfd5 0%, #3a4ed5 100%) 1;
+  -webkit-border-image: -webkit-linear-gradient(left, #3acfd5 0%, #3a4ed5 100%) 1;
+  border-image: linear-gradient(to right, #3acfd5 0%, #3a4ed5 100%) 1;
+  border-image-slice: 1;
+  width: 150px;
+  height: 250px;
+  padding: 20px;
+
+  background-origin: padding-box;
+  background-clip: content-box;
+}

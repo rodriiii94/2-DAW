@@ -1,0 +1,20 @@
+*{
+text-decoration:none;
+list-style:none;
+}
+ul li{
+display:inline-block;
+width:200px;
+}
+ul li a{
+color:#FFF;
+font-size:15px;
+font-weight:bold;
+padding:5px;
+display:block;
+}
+/*ejemplos de tres formas de hacerlo*/
+ul.especial li:nth-child(2n+1) {background-color: grey;}
+ul.especial li:nth-child(2n) {background-color: pink;}
+/*ul.especial li:nth-child(3) {background-color: grey;}*/
+/*ul.especial li:nth-child(4) {background-color: pink;}*/

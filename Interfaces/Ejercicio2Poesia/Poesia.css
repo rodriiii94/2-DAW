@@ -1,0 +1,39 @@
+body {
+    background-color: #ebe1c7;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 0;
+    padding: 20px;
+    /* width: 30%; */   
+}
+
+#p2 {
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    text-align: right;
+    
+}
+
+#p3 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-align: left;
+}
+
+#p4 {
+    font-family: 'Courier New', Courier, monospace;
+    font-style: italic;
+    text-align: justify;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    padding: 20px;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="Ejercicio4e.js" type="text/javascript"></script>
+    <style>
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: blue;    
+        }
+
+        #cajaPrincipal {
+            width: 300px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        input {
+            width: 50px;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="cajaPrincipal">
+        <h2>CONVERSOR DE CM A PIE</h2>
+        <table>
+            <tr>
+                <td>
+                    <img src="https://i.etsystatic.com/36867827/r/il/dc764d/4146727750/il_570xN.4146727750_grqr.jpg" width="100px">
+                    <input type="number" id="cantidad" onchange="convertir()" onkeyup="convertir()">
+                </td>
+                <td>
+                    <p> = </p>
+                </td>
+                <td>    
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Foot_on_white_background.jpg" width="100px">
+                    <input type="text" id="respuesta"   readonly>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
