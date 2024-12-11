@@ -340,3 +340,47 @@ body {
 
 [Try HTML Table Border Style](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_border_style)
 ![alt text](image-23.png)
+
+#### 71. Listas
+
+[Try HTML Lists](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_intro)
+![alt text](image-24.png)
+
+#### 72. Lista de descripcion
+
+[Try HTML Description Lists](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_lists_description)
+![alt text](image-25.png)
+
+#### 73. Etiquetas de lista HTML
+
+`<ul>` Define una lista desordenada
+`<ol>` Define una lista ordenada
+`<li>` Define un elemento de lista
+`<dl>` Define una lista de descripción
+`<dt>` Define un término en una lista de descripción
+`<dd>` Define una descripción de un término en una lista de descripción
+
+#### 74. Elementos en linea
+
+Un elemento de linea no comienza en una nueba lineam solo ocupa el ancho necesario. Este es un elemento `<span>` dentro de un párrafo.
+[Try HTML Inline](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_span)
+![alt text](image-26.png)
+
+#### 75. Elemento div
+
+El elemento `<div>` es un contenedor de bloque que se utiliza para agrupar elementos HTML y aplicar estilos a estos con CSS.
+
+[Try HTML Div](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div)
+![alt text](image-27.png)
+
+#### 76. Elemento span
+
+El elemento `<span>` es un contenedor en línea que se utiliza para marcar partes de un texto o parte de un documento.
+
+[Try HTML Span](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_span)
+![alt text](image-28.png)
+
+#### 77. Alinear centro un elemento div
+
+[Try HTML Div Center](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div3)
+![alt text](image-29.png)
