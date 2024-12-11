@@ -384,3 +384,13 @@ El elemento `<span>` es un contenedor en línea que se utiliza para marcar parte
 
 [Try HTML Div Center](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div3)
 ![alt text](image-29.png)
+
+#### 78. Multiples elementos div
+
+[Try HTML Multiple Divs](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div4)
+![alt text](image-30.png)
+
+#### 79. Elementos div horizontales
+
+[Try HTML Div Horizontal](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div_float)
+![alt text](image-31.png)
