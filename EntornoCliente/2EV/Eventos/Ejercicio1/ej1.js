@@ -1,5 +1,6 @@
 document.addEventListener('mousemove', function(event) {
     muestraInformacion(event);
+    colorBlanco(event);
 });
 
 document.addEventListener('keydown', function(event) {
@@ -26,6 +27,13 @@ function muestraInformacion(event) {
 function cambioColorRaton(event) {
     const infoDiv = document.getElementById('infoCur');
     infoDiv.style.backgroundColor = '#FFFFCC';
+}
+
+function colorBlanco(event) {
+    const infoDiv = document.getElementById('infoCur');
+    const infoKey = document.getElementById('infoKey');
+    infoDiv.style.backgroundColor = 'white';
+    infoKey.style.backgroundColor = 'white';
 }
 
 function muestraInfoKey(event) {
