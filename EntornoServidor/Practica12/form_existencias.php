@@ -1,5 +1,23 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
+     header("Location: login.php");
+     exit();
+}
+
+$server = "localhost";
+$user = "root";
+$pass = "root";
+$db = "MUEBLES";
+
+$conexion = new mysqli($server, $user, $pass, $db);
+
+if ($conexion->connect_error) {
+  die("<p>Error en la conexión a la base de datos: " . htmlspecialchars($conexion->connect_error) . "</p>");
+}
+
+$consulta = $conexion->prepare("SELECT nombre FROM Pieza");
 ?>
 
 <HTML>
@@ -27,11 +45,9 @@ session_start();
 	<A HREF="listado.php">Productos</A>
 	<BR>
 	<BR>
-	<A HREF='form_existencias.php'>Disponibilidad de piezas</A>
-	<BR>
-	<BR>
 	<?php
      if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+         echo "<A HREF='form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
          echo "<A HREF='logout.php'>Cerrar sesi&oacute;n</A>";
      } else {
          echo "<A HREF='login.php'>Acceso clientes</A>";
@@ -54,7 +70,22 @@ session_start();
         </TD>
         <TD>
 	 <SELECT NAME="pieza">
-		<OPTION></OPTION>
+		<?php
+          
+          if ($consulta->execute()) {
+               $resultado = $consulta->get_result();
+               while ($fila = $resultado->fetch_assoc()) {
+                   echo '<OPTION VALUE="' . htmlspecialchars($fila['nombre']) . '">' .
+                       htmlspecialchars($fila['nombre']) . '</OPTION>';
+               }
+               $resultado->free();
+          } else {
+                 echo "<p>Error al ejecutar la consulta de piezas.</p>";
+          }
+          $consulta->close();
+          $conexion->close();
+          
+          ?>
 	 </SELECT>
         </TD>
        </TR>

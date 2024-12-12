@@ -27,11 +27,9 @@ session_start();
 	<A HREF="listado.php">Productos</A>
 	<BR>
 	<BR>
-	<A HREF='form_existencias.php'>Disponibilidad de piezas</A>
-	<BR>
-    <BR>
 	<?php
      if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
+         echo "<A HREF='form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
          echo "<A HREF='logout.php'>Cerrar sesi&oacute;n</A>";
      } else {
          echo "<A HREF='login.php'>Acceso clientes</A>";
