@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+h1 {
+    text-align: center;
+    color: #333;
+}
+.itinerary {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+.day {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    width: calc(33.33% - 20px);
+    min-width: 250px;
+    box-sizing: border-box;
+}
+.day h2 {
+    color: #2c3e50;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+}
+.price {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+.attractions {
+    margin-top: 10px;
+}
+.attractions h3 {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+.attractions ol {
+    padding-left: 20px;
+}
+.other-cities {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+@media (max-width: 768px) {
+    .day {
+        width: calc(50% - 20px);
+    }
+}
+@media (max-width: 480px) {
+    .day {
+        width: 100%;
+    }
+}

@@ -394,3 +394,10 @@ El elemento `<span>` es un contenedor en línea que se utiliza para marcar parte
 
 [Try HTML Div Horizontal](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div_float)
 ![alt text](image-31.png)
+
+#### 80. Bloque en línea
+
+Si cambia la propiedad de visualización del elemento `<div>` de bloque a bloque en línea, los elementos `<div>` ya no agregarán un salto de línea antes y después, y se mostrarán uno al lado del otro en lugar de uno encima de otro.
+
+[Try HTML Inline Block](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div_inline-block)
+![alt text](image-32.png)
