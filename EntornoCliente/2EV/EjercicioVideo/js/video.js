@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const playPauseBtn = document.getElementById('playPauseBtn');
     const muted = document.getElementById('mute');
     const stopped = document.getElementById('stop');
+    const pausePlay = document.getElementById('pausePlay');
+    const volumen = document.getElementById('volumeControl');
+    const tiempo = document.getElementById('tiempo');
+
     let currentVideoIndex = 0;
 
     function showVideo(index) {
@@ -18,21 +22,23 @@ document.addEventListener('DOMContentLoaded', function() {
     function nextVideo() {
         currentVideoIndex = (currentVideoIndex + 1) % videos.length;
         showVideo(currentVideoIndex);
+        pausePlay.src = 'icon/play.png';
     }
-
+    
     function prevVideo() {
         currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
         showVideo(currentVideoIndex);
+        pausePlay.src = 'icon/play.png';
     }
 
     function togglePlayPause() {
         const currentVideo = videos[currentVideoIndex];
         if (currentVideo.paused) {
             currentVideo.play();
-            playPauseBtn.textContent = 'Pausar';
+            pausePlay.src = 'icon/pausa.png';
         } else {
             currentVideo.pause();
-            playPauseBtn.textContent = 'Reproducir';
+            pausePlay.src = 'icon/play.png';
         }
     }
 
@@ -51,7 +57,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function stop() {
         videos[currentVideoIndex].pause();
         videos[currentVideoIndex].currentTime = 0;
-        playPauseBtn.textContent = 'Reproducir';
+        pausePlay.src = 'icon/play.png';
+    }
+
+    function volume() {
+        videos[currentVideoIndex].volume = volumen.value / 100;
+    }
+
+    function updateProgress() {
+        const currentVideo = videos[currentVideoIndex];
+        currentVideo.currentTime = (tiempo.value / 100) * currentVideo.duration;
+        currentVideo.addEventListener('timeupdate', function() {
+            tiempo.value = (currentVideo.currentTime / currentVideo.duration) * 100;
+        });
+
     }
 
     nextBtn.addEventListener('click', nextVideo);
@@ -59,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
     playPauseBtn.addEventListener('click', togglePlayPause);
     muted.addEventListener('click', mute);
     stopped.addEventListener('click', stop);
+    pausePlay.addEventListener('click', togglePlayPause);
+    volumen.addEventListener('input', volume);
+    tiempo.addEventListener('click', updateProgress);
+    tiempo.addEventListener('input', updateProgress);
 
     showVideo(currentVideoIndex);
 });
