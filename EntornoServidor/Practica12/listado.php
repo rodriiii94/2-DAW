@@ -82,12 +82,6 @@ $consulta = $conexion->prepare("SELECT nombre, precio FROM Mueble");
           }
           $consulta->close();
           ?>
-
-
-          <!-- <TR>
-            <TD>XX</TD>
-            <TD ALIGN='RIGHT'>XX</TD>
-          </TR> -->
         </TABLE>
       </TD>
     </TR>
