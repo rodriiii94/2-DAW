@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pausePlay = document.getElementById('pausePlay');
     const volumen = document.getElementById('volumeControl');
     const tiempo = document.getElementById('tiempo');
+    const fullscreen = document.getElementById('fullscreen');
 
     let currentVideoIndex = 0;
 
@@ -73,6 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
+    function toggleFullscreen() {
+        if (videos[currentVideoIndex].requestFullscreen) {
+            videos[currentVideoIndex].requestFullscreen();
+        } else if (videos[currentVideoIndex].mozRequestFullScreen) {
+            videos[currentVideoIndex].mozRequestFullScreen();
+        } else if (videos[currentVideoIndex].webkitRequestFullscreen) {
+            videos[currentVideoIndex].webkitRequestFullscreen();
+        } else if (videos[currentVideoIndex].msRequestFullscreen) {
+            videos[currentVideoIndex].msRequestFullscreen();
+        }
+    }
+
     nextBtn.addEventListener('click', nextVideo);
     prevBtn.addEventListener('click', prevVideo);
     playPauseBtn.addEventListener('click', togglePlayPause);
@@ -82,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
     volumen.addEventListener('input', volume);
     tiempo.addEventListener('click', updateProgress);
     tiempo.addEventListener('input', updateProgress);
+    fullscreen.addEventListener('click', toggleFullscreen);
 
     showVideo(currentVideoIndex);
 });
