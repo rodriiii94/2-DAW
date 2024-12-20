@@ -24,8 +24,10 @@ class Usuarios_modelo {
             $_SESSION['user'] = $usuario;
             $_SESSION['pass'] = $password;
             header("Location: user_page.php");
+            return true;
         } else {
             header("Location: login.php");
+            return false;
         }
     }
 }

@@ -1,6 +1,9 @@
 <?php
-require_once("Model/Conectar.php");
-require_once("Model/Muebles_modelo.php");
-require_once("Model/Piezas_modelo.php");
-require_once("Model/Unidades_modelo.php");
-require_once("Model/Usuarios_modelo.php");
+require_once("Model/Conectar.phtml");
+require_once("Model/exitencias.phtml");
+require_once("Model/form_existencias.phtml");
+require_once("Model/index.phtml");
+require_once("Model/listado.phtml");
+require_once("Model/login.phtml");
+require_once("Model/logout.phtml");
+require_once("Model/user_page.phtml");

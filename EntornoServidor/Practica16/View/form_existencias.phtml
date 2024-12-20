@@ -49,10 +49,10 @@ $consulta = $conexion->prepare("SELECT nombre FROM Pieza");
                     <BR>
                     <?php
                     if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-                         echo "<A HREF='form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
-                         echo "<A HREF='logout.php'>Cerrar sesi&oacute;n</A>";
+                         echo "<A HREF='form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
+                         echo "<A HREF='logout.phtml'>Cerrar sesi&oacute;n</A>";
                     } else {
-                         echo "<A HREF='login.php'>Acceso clientes</A>";
+                         echo "<A HREF='login.phtml'>Acceso clientes</A>";
                     }
                     ?>
                </TD>
@@ -103,4 +103,5 @@ $consulta = $conexion->prepare("SELECT nombre FROM Pieza");
           </TR>
      </TABLE>
 </BODY>
+
 </HTML>
