@@ -7,7 +7,7 @@ function cerrarSesion() {
     session_start();
     session_unset(); // Limpia todas las variables de sesión
     session_destroy(); // Destruye todas las sesiones
-    header("Location: login.php");
+    header("Location: View/login.phtml");
 }
 
 require_once 'View/user_page.php';

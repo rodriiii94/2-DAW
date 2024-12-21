@@ -23,18 +23,18 @@ session_start();
     <TABLE HEIGHT=85% WIDTH=100%>
         <TR>
             <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-                <A HREF="index.php">Principal</A>
+                <A HREF="View/index.phtml">Principal</A>
                 <BR>
                 <BR>
-                <A HREF="listado.php">Productos</A>
+                <A HREF="View/listado.phtml">Productos</A>
                 <BR>
                 <BR>
                 <?php
                 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-                    echo "<A HREF='form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
-                    echo "<A HREF='logout.phtml'>Cerrar sesi&oacute;n</A>";
+                    echo "<A HREF='View/form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
+                    echo "<A HREF='View/logout.phtml'>Cerrar sesi&oacute;n</A>";
                 } else {
-                    echo "<A HREF='login.phtml'>Acceso clientes</A>";
+                    echo "<A HREF='View/login.phtml'>Acceso clientes</A>";
                 }
                 ?>
             </TD>

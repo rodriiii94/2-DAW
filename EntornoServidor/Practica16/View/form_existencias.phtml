@@ -5,19 +5,6 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
      header("Location: login.php");
      exit();
 }
-
-$server = "localhost";
-$user = "root";
-$pass = "root";
-$db = "MUEBLES";
-
-$conexion = new mysqli($server, $user, $pass, $db);
-
-if ($conexion->connect_error) {
-     die("<p>Error en la conexión a la base de datos: " . htmlspecialchars($conexion->connect_error) . "</p>");
-}
-
-$consulta = $conexion->prepare("SELECT nombre FROM Pieza");
 ?>
 
 <HTML>
@@ -41,18 +28,18 @@ $consulta = $conexion->prepare("SELECT nombre FROM Pieza");
      <TABLE HEIGHT=85% WIDTH=100%>
           <TR>
                <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-                    <A HREF="index.php">Principal</A>
+                    <A HREF="View/index.phtml">Principal</A>
                     <BR>
                     <BR>
-                    <A HREF="listado.php">Productos</A>
+                    <A HREF="View/listado.phtml">Productos</A>
                     <BR>
                     <BR>
                     <?php
                     if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-                         echo "<A HREF='form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
-                         echo "<A HREF='logout.phtml'>Cerrar sesi&oacute;n</A>";
+                         echo "<A HREF='View/form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
+                         echo "<A HREF='View/logout.phtml'>Cerrar sesi&oacute;n</A>";
                     } else {
-                         echo "<A HREF='login.phtml'>Acceso clientes</A>";
+                         echo "<A HREF='View/login.phtml'>Acceso clientes</A>";
                     }
                     ?>
                </TD>
@@ -64,7 +51,7 @@ $consulta = $conexion->prepare("SELECT nombre FROM Pieza");
                     <BR>
                     <BR>
                     <!-- Formulario de selección de pieza -->
-                    <FORM NAME="existencias" ACTION="existencias.php" METHOD="POST">
+                    <FORM NAME="existencias" ACTION="View/existencias.phtml" METHOD="POST">
                          <TABLE>
                               <TR>
                                    <TD ALIGN="RIGHT">
