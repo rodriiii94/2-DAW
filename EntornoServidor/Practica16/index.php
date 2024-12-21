@@ -1,9 +1,5 @@
 <?php
-require_once("Model/Conectar.phtml");
-require_once("Model/exitencias.phtml");
-require_once("Model/form_existencias.phtml");
-require_once("Model/index.phtml");
-require_once("Model/listado.phtml");
-require_once("Model/login.phtml");
-require_once("Model/logout.phtml");
-require_once("Model/user_page.phtml");
+require_once "Model/Conectar.phtml";
+require_once "Controller/MuebleController.php";
+require_once "Controller/PiezaController.php";
+require_once "Controller/UsuarioController.php";
