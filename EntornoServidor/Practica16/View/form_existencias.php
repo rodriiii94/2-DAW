@@ -28,18 +28,18 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
      <TABLE HEIGHT=85% WIDTH=100%>
           <TR>
                <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-                    <A HREF="View/index.phtml">Principal</A>
+                    <A HREF="View/index.php">Principal</A>
                     <BR>
                     <BR>
-                    <A HREF="View/listado.phtml">Productos</A>
+                    <A HREF="View/listado.php">Productos</A>
                     <BR>
                     <BR>
                     <?php
                     if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-                         echo "<A HREF='View/form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
-                         echo "<A HREF='View/logout.phtml'>Cerrar sesi&oacute;n</A>";
+                         echo "<A HREF='View/form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
+                         echo "<A HREF='View/logout.php'>Cerrar sesi&oacute;n</A>";
                     } else {
-                         echo "<A HREF='View/login.phtml'>Acceso clientes</A>";
+                         echo "<A HREF='View/login.php'>Acceso clientes</A>";
                     }
                     ?>
                </TD>
@@ -51,7 +51,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                     <BR>
                     <BR>
                     <!-- Formulario de selección de pieza -->
-                    <FORM NAME="existencias" ACTION="View/existencias.phtml" METHOD="POST">
+                    <FORM NAME="existencias" ACTION="View/existencias.php" METHOD="POST">
                          <TABLE>
                               <TR>
                                    <TD ALIGN="RIGHT">

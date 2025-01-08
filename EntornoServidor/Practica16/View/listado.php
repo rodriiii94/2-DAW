@@ -23,18 +23,18 @@ session_start();
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
       <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-        <A HREF="View/index.phtml">Principal</A>
+        <A HREF="View/index.php">Principal</A>
         <BR>
         <BR>
-        <A HREF="View/listado.phtml">Productos</A>
+        <A HREF="View/listado.php">Productos</A>
         <BR>
         <BR>
         <?php
         if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-          echo "<A HREF='View/form_existencias.phtml'>Disponibilidad de piezas</A> <BR> <BR>";
-          echo "<A HREF='View/logout.phtml'>Cerrar sesi&oacute;n</A>";
+          echo "<A HREF='View/form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
+          echo "<A HREF='View/logout.php'>Cerrar sesi&oacute;n</A>";
         } else {
-          echo "<A HREF='View/login.phtml'>Acceso clientes</A>";
+          echo "<A HREF='View/login.php'>Acceso clientes</A>";
         }
         ?>
       </TD>
@@ -54,10 +54,11 @@ session_start();
           </TR>
 
           <?php
-            for ($i=0; $i < 5; $i++) { 
-              echo "<tr><td>" . htmlspecialchars($datosNombreMueble['nombre']) . "</td><td>"
-              . htmlspecialchars(number_format($datosPrecioMueble['precio'], 2)) . " €</td></tr>";
-            }
+            foreach ($productos as $producto) {
+              echo "<tr><td>" . htmlspecialchars($producto['nombre']) . "</td><td>"
+              . htmlspecialchars(number_format($producto['precio'], 2)) . " €</td></tr>";
+          }
+          
           ?>
         </TABLE>
       </TD>

@@ -20,8 +20,9 @@ class Mueble {
         $consultaCodMueble = "SELECT cod FROM Mueble";
         $consulta = $this->db->query($consultaCodMueble);
 
+        $cods = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $this->cod = $filas;
+            $cods[] = $filas['cod'];
         }
 
         return $this->cod;
@@ -34,13 +35,14 @@ class Mueble {
     public function getNombre() {
         $consultaNombreMueble = "SELECT nombre FROM Mueble";
         $consulta = $this->db->query($consultaNombreMueble);
-
+    
+        $nombres = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $this->nombre = $filas;
+            $nombres[] = $filas['nombre'];
         }
-
-        return $this->nombre;
-    }
+    
+        return $nombres;
+    }    
 
     public function setNombre($nombre) {
         $this->nombre = $nombre;
@@ -50,8 +52,9 @@ class Mueble {
         $consultaPrecioMueble = "SELECT precio FROM Mueble";
         $consulta = $this->db->query($consultaPrecioMueble);
 
+        $Precios = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $this->precio = $filas;
+            $Precios[] = $filas['precio'];
         }
 
         return $this->precio;

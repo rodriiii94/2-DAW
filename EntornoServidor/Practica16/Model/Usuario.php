@@ -30,4 +30,11 @@ class Usuarios_modelo {
             return false;
         }
     }
+
+    function cerrarSesion() {
+        session_start();
+        session_unset(); // Limpia todas las variables de sesión
+        session_destroy(); // Destruye todas las sesiones
+        header("Location: View/login.php");
+    }
 }
