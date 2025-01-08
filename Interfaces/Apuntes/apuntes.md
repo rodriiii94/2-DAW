@@ -1,6 +1,6 @@
 # Apuntes Interfaces Web
 
-## Introducción
+## Primera Evaluación
 
 ### w3schools.com
 
@@ -401,3 +401,53 @@ Si cambia la propiedad de visualización del elemento `<div>` de bloque a bloque
 
 [Try HTML Inline Block](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_div_inline-block)
 ![alt text](image-32.png)
+
+## Segunda Evaluación
+
+### ddw
+
+#### 1. Marcos Flotantes
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_height_width)
+![alt text](image-33.png)
+
+#### 2. Estilo de marco
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_height_width)
+![alt text](image-34.png)
+
+#### 3. Iframe - Eliminar el borde
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_frameborder)
+![alt text](image-35.png)
+
+#### 4. Iframe - Destino (objetivo) de un enlace
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_target)
+![alt text](image-36.png)
+
+#### 5. Mi primer javascript
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_scripts_intro)
+![alt text](image-37.png)
+
+#### 6. Una muestra de Javascript
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_script_html)
+![alt text](image-38.png)
+
+#### 7. Javascript puede cambiar estilos
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_script_styles)
+![alt text](image-39.png)
+
+#### 8. Javascript puede cambiar atributos
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_script_attribute)
+![alt text](image-40.png)
+
+#### 9. Noscript
+
+La etiqueta `<noscript>` se utiliza para proporcionar contenido alternativo para los navegadores que no admiten scripts o que tienen los scripts desactivados.
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_noscript)
+![alt text](image-41.png)
