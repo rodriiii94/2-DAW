@@ -1,0 +1,74 @@
+@startuml MVC Gestion muebles
+skinparam packageStyle rectangle
+
+package "Modelo" {
+    class Mueble {
+        + cod: int
+        + nombre: string
+        + precio: float
+        --
+        + listarMuebles(): array
+    }
+    
+    class Pieza {
+        + cod: int
+        + nombre: string
+        + descripcion: string
+        --
+        + buscarPieza(cod: int): Pieza
+        + obtenerUnidades(cod: int): int
+    }
+    
+    class Unidades {
+        + cod_pieza: int
+        + unidades: int
+        --
+        + obtenerUnidadesPieza(cod_pieza: int): int
+    }
+    
+    class Usuario {
+        + user: string
+        + pass: string
+        --
+        + autenticar(user: string, pass: string): bool
+    }
+}
+
+package "Controlador" {
+    class MuebleController {
+        + listarMuebles(): array
+    }
+    
+    class PiezaController {
+        + buscarPieza(cod: int): Pieza
+        + obtenerUnidades(cod: int): int
+    }
+    
+    class UsuarioController {
+        + autenticar(user: string, pass: string): bool
+        + cerrarSesion(): void
+    }
+}
+
+package "Vistas" {
+    class index.php
+    class listado.php
+    class login.php
+    class user_page.php
+    class form_existencias.php
+    class existencias.php
+
+    index.php ..> MuebleController : utiliza
+    listado.php ..> MuebleController : utiliza
+    login.php ..> UsuarioController : utiliza
+    user_page.php ..> UsuarioController : utiliza
+    form_existencias.php ..> PiezaController : utiliza
+    existencias.php ..> PiezaController : utiliza
+}
+
+MuebleController --> Mueble : gestiona
+PiezaController --> Pieza : gestiona
+PiezaController --> Unidades : consulta
+UsuarioController --> Usuario : gestiona
+
+@enduml
