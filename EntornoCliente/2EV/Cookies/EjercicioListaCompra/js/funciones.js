@@ -2,7 +2,8 @@ window.onload = init;
 function init(){
     botonEnvio = document.querySelector('[type="button"]');
     nuevoItem = document.querySelector('[type="text"]');
-    listaCompra = document.getElementById("listaCompra");
+    nuevoPrecio = document.querySelector('[type="number"]');
+    tablaCompra = document.getElementById("tablaCompra");
     botonEnvio.addEventListener("click",anadir);
     document.getElementById("resetear").addEventListener("click",resetear);
     rellenarContenido();
@@ -10,42 +11,47 @@ function init(){
 
 function anadir(e){
     evento = e || e;
-    if (nuevoItem.value == ""){
+    if (nuevoItem.value == "" || nuevoPrecio.value == ""){
         evento.preventDefault();
     }else{
-    var lista = document.createElement("li");
-    lista.innerHTML = nuevoItem.value;
-    lista.addEventListener("dblclick",eliminarLi);
-    listaCompra.appendChild(lista);
-    nuevoItem.value = "";
+        var fila = document.createElement("tr");
+        var celdaItem = document.createElement("td");
+        var celdaPrecio = document.createElement("td");
+        celdaItem.innerHTML = nuevoItem.value;
+        celdaPrecio.innerHTML = nuevoPrecio.value;
+        fila.appendChild(celdaItem);
+        fila.appendChild(celdaPrecio);
+        fila.addEventListener("dblclick",eliminarFila);
+        tablaCompra.appendChild(fila);
+        nuevoItem.value = "";
+        nuevoPrecio.value = "";
     }
     actualizarCookie();
 } 
 
-
 function actualizarCookie(){
-    setCookie("compra",listaCompra.innerHTML,7);
+    setCookie("compra",tablaCompra.innerHTML,7);
 }
 
 function resetear(){
-    listaCompra.innerHTML ="";
+    tablaCompra.innerHTML ="";
     removeCookie("compra");
 }
 
 function rellenarContenido(){
     var i=0;
     if (detectCookie("compra")){
-        listaCompra.innerHTML = getCookie("compra");
-        //los elementos añadidos no tienen el comportamientoLi.
-        elementosLista = document.getElementsByTagName("li");
-        while(i<elementosLista.length){
-            elementosLista[i].addEventListener("dblclick",eliminarLi);
+        tablaCompra.innerHTML = getCookie("compra");
+        //los elementos añadidos no tienen el comportamientoFila.
+        elementosFila = document.getElementsByTagName("tr");
+        while(i<elementosFila.length){
+            elementosFila[i].addEventListener("dblclick",eliminarFila);
             i++;
         }
     }
 };
 
-function eliminarLi(){
+function eliminarFila(){
     this.parentNode.removeChild(this);
     actualizarCookie();
 }

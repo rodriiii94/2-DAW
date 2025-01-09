@@ -9,7 +9,7 @@
             
             *{box-sizing:border-box;padding:0;margin:0;}
             #container{
-                width:600px;
+                width:90%;
                 padding:2%;
                 border:1px solid #000;
                 border-radius:10px;
@@ -28,7 +28,7 @@
             }
             input{
                 display:inline-block;
-                width:49%;
+                width:33%;
                 margin:20px auto;
             }
             
@@ -50,10 +50,11 @@
         <form action="#">
             <label for="anadir">Mi lista de la compra:</label>
             <input type="text" name="anadir" id="anadir">
+            <input type="number" name="precio" id="precio" step="0.1">
             <input type="button" value="Añadir a la lista">
         </form>    
         
-        <ul id="listaCompra"></ul>
+        <table id="listaCompra"></table>
         
         <p>Nota: Puedes eliminar elementos de la lista haciendo doble click sobre ellos</p>
         <button id="resetear">Resetear lista y borrarla de la memoria</button>
