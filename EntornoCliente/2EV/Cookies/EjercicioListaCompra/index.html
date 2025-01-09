@@ -41,6 +41,33 @@
                 background-color:#c2c2c2;
                 cursor:pointer;
             }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+
+            table, th, td {
+                border: 1px solid #000;
+            }
+
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            tr:hover {
+                background-color: #e0e0e0;
+                cursor: pointer;
+            }
             
         </style>
     </head>
@@ -54,7 +81,8 @@
             <input type="button" value="Añadir a la lista">
         </form>    
         
-        <table id="listaCompra"></table>
+        <table id="listaCompra">
+        </table>
         
         <p>Nota: Puedes eliminar elementos de la lista haciendo doble click sobre ellos</p>
         <button id="resetear">Resetear lista y borrarla de la memoria</button>

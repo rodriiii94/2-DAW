@@ -3,7 +3,7 @@ function init(){
     botonEnvio = document.querySelector('[type="button"]');
     nuevoItem = document.querySelector('[type="text"]');
     nuevoPrecio = document.querySelector('[type="number"]');
-    tablaCompra = document.getElementById("tablaCompra");
+    tablaCompra = document.getElementById("listaCompra");
     botonEnvio.addEventListener("click",anadir);
     document.getElementById("resetear").addEventListener("click",resetear);
     rellenarContenido();
