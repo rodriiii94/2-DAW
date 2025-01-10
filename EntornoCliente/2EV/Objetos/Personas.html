@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Persona(nombre, apellido, edad, pais) {
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
+            this.pais = pais;
+
+            this.saludar = function() {
+                `Hola, soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`;
+            }
+
+        }
+
+        var persona1 = new Persona('Juan', 'Perez', 30, 'Argentina');
+
+        document.write(persona1.saludar());
+    
+    </script>
+</body>
+</html>
