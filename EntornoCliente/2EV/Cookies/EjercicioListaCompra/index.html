@@ -74,14 +74,23 @@
     <body>
     
        <div id="container">
-        <form action="#">
-            <label for="anadir">Mi lista de la compra:</label>
-            <input type="text" name="anadir" id="anadir">
+           <label for="formulario">Mi lista de la compra:</label>
+        <form action="#" id="formulario">
+            <input type="text" name="anadir" id="item">
             <input type="number" name="precio" id="precio" step="0.1">
-            <input type="button" value="Añadir a la lista">
+            <input type="button" id="boton" value="Añadir a la lista">
         </form>    
         
         <table id="listaCompra">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
         
         <p>Nota: Puedes eliminar elementos de la lista haciendo doble click sobre ellos</p>
