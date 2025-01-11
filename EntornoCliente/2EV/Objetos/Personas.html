@@ -14,15 +14,27 @@
             this.pais = pais;
 
             this.saludar = function() {
-                `Hola, soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`;
+                return `Hola, soy ${this.nombre} ${this.apellido} y tengo ${this.edad} años`;
+            }
+
+            this.decirPais = function() {
+                return `Soy de ${this.pais}`;
+            }
+
+            this.crearUnDiv = function() {
+                return `<div style="border: solid 2px black; float: left; padding: 10px;">${this.nombre} ${this.apellido} ${this.edad} ${this.pais}</div>`;
             }
 
         }
 
-        var persona1 = new Persona('Juan', 'Perez', 30, 'Argentina');
+        const persona1 = new Persona('Juan', 'Perez', 30, 'España');
 
         document.write(persona1.saludar());
-    
+        document.write('<br>');
+        document.write(persona1.decirPais());
+        document.write('<br>');
+        document.write(persona1.crearUnDiv());
+
     </script>
 </body>
 </html>
