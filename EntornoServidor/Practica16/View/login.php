@@ -26,27 +26,14 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
   </TABLE>
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
-      <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-        <A HREF="View/index.php">Principal</A>
-        <BR>
-        <BR>
-        <A HREF="View/listado.php">Productos</A>
-        <BR>
-        <BR>
-        <?php
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-          echo "<A HREF='View/form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
-          echo "<A HREF='View/logout.php'>Cerrar sesi&oacute;n</A>";
-        } else {
-          echo "<A HREF='View/login.php'>Acceso clientes</A>";
-        }
-        ?>
-      </TD>
+      <?php
+      require_once 'Menu/menu.php';
+      ?>
       <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
         <H1>Identif&iacute;quese
         </H1>
         <!-- Formulario de identificación -->
-        <FORM NAME="login" ACTION="Controller/UsuarioController.php" METHOD="POST">
+        <FORM NAME="login" ACTION="/index.php?controlador=Usuario&metodo=login" METHOD="POST">
           <TABLE>
             <TR>
               <TD ALIGN="RIGHT">

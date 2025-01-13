@@ -12,8 +12,8 @@ class Usuarios_modelo {
     }
 
     public function verify($user, $pass) {
-        $consulta = $this->db->prepare("SELECT `user`, `pass` FROM `Usuario` WHERE user = ? AND pass = ?");
-        $consulta->execute([$user, $pass]);
+        $consulta = $this->db->prepare("SELECT `user`, `pass` FROM `Usuario` WHERE user = :user AND pass = :pass");
+        $consulta->execute([':user' => $user, ':pass' => $pass]);
         $filas = $consulta->fetch(PDO::FETCH_ASSOC);
         
         if ($filas !== false) {
@@ -23,10 +23,8 @@ class Usuarios_modelo {
             $_SESSION['logged'] = true;
             $_SESSION['user'] = $usuario;
             $_SESSION['pass'] = $password;
-            header("Location: user_page.php");
             return true;
         } else {
-            header("Location: login.php");
             return false;
         }
     }
