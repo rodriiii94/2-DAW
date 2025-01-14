@@ -19,7 +19,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
     <TR>
       <TD BGCOLOR="FFFFDD" ALIGN=CENTER VALIGN=CENTER>
         <H1>
-          muebles Posada
+          Muebles Posada
         </H1>
       </TD>
     </TR>

@@ -1,6 +1,7 @@
 <?php
 require_once 'Model/Usuario.php';
 class UsuarioController {
+
     function login() {
         $usuario = new Usuario();
         if ($usuario->verify($_POST['user'], $_POST['pass']) === true) {
