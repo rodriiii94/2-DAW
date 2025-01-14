@@ -15,29 +15,16 @@ session_start();
     <TR>
       <TD BGCOLOR="FFFFDD" ALIGN=CENTER VALIGN=CENTER>
         <H1>
-          Muebles Posada
+          muebles Posada
         </H1>
       </TD>
     </TR>
   </TABLE>
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
-      <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-        <A HREF="View/index.php">Principal</A>
-        <BR>
-        <BR>
-        <A HREF="View/listado.php">Productos</A>
-        <BR>
-        <BR>
-        <?php
-        if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-          echo "<A HREF='View/form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
-          echo "<A HREF='View/logout.php'>Cerrar sesi&oacute;n</A>";
-        } else {
-          echo "<A HREF='View/login.php'>Acceso clientes</A>";
-        }
-        ?>
-      </TD>
+      <?php
+        require_once 'Menu/menu.php';
+      ?>
       <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
         <H1>
           Listado de productos
@@ -54,11 +41,16 @@ session_start();
           </TR>
 
           <?php
-            foreach ($productos as $producto) {
-              echo "<tr><td>" . htmlspecialchars($producto['nombre']) . "</td><td>"
-              . htmlspecialchars(number_format($producto['precio'], 2)) . " €</td></tr>";
+          // Incluir el controlador para obtener los muebles
+          require_once '../Controller/MuebleController.php';
+          $muebleController = new MuebleController();
+          $muebles = $muebleController->listarMuebles();
+          foreach ($muebles as $mueble) {
+            echo "<TR>";
+            echo "<TD>" . $mueble['nombre'] . "</TD>";
+            echo "<TD>" . number_format($mueble['precio'], 2) . " €</TD>";
+            echo "</TR>";
           }
-          
           ?>
         </TABLE>
       </TD>

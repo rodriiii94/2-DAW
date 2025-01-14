@@ -1,5 +1,5 @@
 <?php
-class Usuarios_modelo {
+class Usuario {
     private $db;
     private $ususario;
     private $password;
@@ -12,7 +12,7 @@ class Usuarios_modelo {
     }
 
     public function verify($user, $pass) {
-        $consulta = $this->db->prepare("SELECT `user`, `pass` FROM `Usuario` WHERE user = :user AND pass = :pass");
+        $consulta = $this->db->prepare("SELECT `user`, `pass` FROM `usuario` WHERE user = :user AND pass = :pass");
         $consulta->execute([':user' => $user, ':pass' => $pass]);
         $filas = $consulta->fetch(PDO::FETCH_ASSOC);
         
@@ -33,6 +33,7 @@ class Usuarios_modelo {
         session_start();
         session_unset(); // Limpia todas las variables de sesión
         session_destroy(); // Destruye todas las sesiones
-        header("Location: View/login.php");
+        header("Location: ./View/login.php");
     }
 }
+

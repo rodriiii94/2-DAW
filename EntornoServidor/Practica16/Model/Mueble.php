@@ -4,16 +4,16 @@ class Mueble {
 
     private $cod;
 
-    private $nombre;
+    private $nombres = [];
 
-    private $precio;
+    private $precios = [];
 
     public function __construct() {
-        require_once("Model/Conectar.php");
+        require_once("../Model/Conectar.php");
         $this->db = Conectar::conexion();
         $this->cod = 0;
-        $this->nombre = "";
-        $this->precio = 0;
+        $this->nombres = [];
+        $this->precios = [];
     }
 
     public function getCodMueble() {
@@ -22,7 +22,7 @@ class Mueble {
 
         $cods = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $cods[] = $filas['cod'];
+            $cods[] = $filas;
         }
 
         return $this->cod;
@@ -32,36 +32,45 @@ class Mueble {
         $this->cod = $cod;
     }
 
-    public function getNombre() {
+    public function get_nombre() {
         $consultaNombreMueble = "SELECT nombre FROM Mueble";
         $consulta = $this->db->query($consultaNombreMueble);
     
-        $nombres = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $nombres[] = $filas['nombre'];
+            $this->nombres[] = $filas;
         }
     
-        return $nombres;
+        return $this->nombres;
     }    
 
-    public function setNombre($nombre) {
-        $this->nombre = $nombre;
+    public function setNombre($nombres) {
+        $this->$nombres = $nombres;
     }
 
     public function getPrecio() {
         $consultaPrecioMueble = "SELECT precio FROM Mueble";
         $consulta = $this->db->query($consultaPrecioMueble);
 
-        $Precios = [];
         while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $Precios[] = $filas['precio'];
+            $this->precios[] = $filas;
         }
 
-        return $this->precio;
+        return $this->precios;
     }
 
-    public function setPrecio($precio) {
-        $this->precio = $precio;
+    public function setPrecio($precios) {
+        $this->precios = $precios;
     }
 
+    public function getMuebles() {
+        $consultaListado = "SELECT nombre, precio FROM Mueble";
+        $consulta = $this->db->query($consultaListado);
+
+        $muebles = [];
+        while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
+            $muebles[] = $filas;
+        }
+
+        return $muebles;
+    }
 }

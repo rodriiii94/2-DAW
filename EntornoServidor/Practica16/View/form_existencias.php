@@ -20,29 +20,16 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
           <TR>
                <TD BGCOLOR="FFFFDD" ALIGN=CENTER VALIGN=CENTER>
                     <H1>
-                         Muebles Posada
+                         muebles Posada
                     </H1>
                </TD>
           </TR>
      </TABLE>
      <TABLE HEIGHT=85% WIDTH=100%>
           <TR>
-               <TD WIDTH=15% BGCOLOR="DDFFFF" VALIGN=CENTER>
-                    <A HREF="View/index.php">Principal</A>
-                    <BR>
-                    <BR>
-                    <A HREF="View/listado.php">Productos</A>
-                    <BR>
-                    <BR>
-                    <?php
-                    if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-                         echo "<A HREF='View/form_existencias.php'>Disponibilidad de piezas</A> <BR> <BR>";
-                         echo "<A HREF='View/logout.php'>Cerrar sesi&oacute;n</A>";
-                    } else {
-                         echo "<A HREF='View/login.php'>Acceso clientes</A>";
-                    }
-                    ?>
-               </TD>
+               <?php
+               require_once("Menu/menu.php");
+               ?>
                <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
                     <H1>
                          Disponibilidad de piezas
@@ -51,7 +38,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                     <BR>
                     <BR>
                     <!-- Formulario de selección de pieza -->
-                    <FORM NAME="existencias" ACTION="View/existencias.php" METHOD="POST">
+                    <FORM NAME="existencias" ACTION="/index.php?controlador=" METHOD="POST">
                          <TABLE>
                               <TR>
                                    <TD ALIGN="RIGHT">
@@ -60,19 +47,13 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                                    <TD>
                                         <SELECT NAME="pieza">
                                              <?php
-
-                                             if ($consulta->execute()) {
-                                                  $resultado = $consulta->get_result();
-                                                  while ($fila = $resultado->fetch_assoc()) {
-                                                       echo '<OPTION VALUE="' . htmlspecialchars($fila['nombre']) . '">' .
-                                                            htmlspecialchars($fila['nombre']) . '</OPTION>';
-                                                  }
-                                                  $resultado->free();
-                                             } else {
-                                                  echo "<p>Error al ejecutar la consulta de piezas.</p>";
+                                             // Incluir el controlador para obtener las piezas
+                                             require_once('../Controller/PiezaController.php');
+                                             $piezasController = new PiezaController();
+                                             $piezas = $piezasController->listado();
+                                             foreach ($piezas as $pieza) {
+                                                  echo "<OPTION VALUE='" . $pieza['nombre'] . "'>" . $pieza['nombre'] . "</OPTION>";
                                              }
-                                             $consulta->close();
-                                             $conexion->close();
                                              ?>
                                         </SELECT>
                                    </TD>

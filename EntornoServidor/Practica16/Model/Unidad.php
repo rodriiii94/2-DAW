@@ -1,10 +1,10 @@
 <?php
-class Unidades_modelo {
+class Unidad {
     private $db;
     private $unidades;
 
     public function __construct() {
-        require_once("Model/Conectar.php");
+        require_once("../Model/Conectar.php");
         $this->db = Conectar::conexion();
     }
 

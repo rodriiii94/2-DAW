@@ -1,27 +1,22 @@
 <?php
-require_once 'Model/Muebles_modelo.php';
+class MuebleController {
+    public function listarNombres() {
+        require_once '../Model/Mueble.php';
+        $mueble = new Mueble();
+        require_once '../View/listado.php';
+        return $mueble->get_nombre();
+    }
 
-$mueble = new Mueble();
+    public function listarPrecios() {
+        require_once '../Model/Mueble.php';
+        $mueble = new Mueble();
+        require_once '../View/listado.php';
+        return $mueble->getPrecio();
+    }
 
-// function obtenerNombre($mueble) {
-//     return $mueble->getNombre();
-// }
-// function obtenerPrecio($mueble) {
-//     return $mueble->getPrecio();
-// }
-
-// $nombre = obtenerNombre($mueble);
-// $precio = obtenerPrecio($mueble);
-
-$productos = [];
-$nombres = $mueble->getNombre();
-$precios = $mueble->getPrecio();
-
-foreach ($nombres as $index => $nombre) {
-    $productos[] = [
-        'nombre' => $nombre,
-        'precio' => $precios[$index] ?? 0,
-    ];
+    public function listarMuebles() {
+        require_once '../Model/Mueble.php';
+        $mueble = new Mueble();
+        return $mueble->getMuebles();
+    }
 }
-
-require_once 'View/listado.php';
