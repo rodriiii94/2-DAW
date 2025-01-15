@@ -1,7 +1,7 @@
 <?php
-    class Conectar {
+    class Conexion {
         public static function conexion() {
-            $conexion = new PDO("mysql:host=localhost;dbname=Mueble", "root", "root");
+            $conexion = new PDO("mysql:host=localhost;dbname=MUEBLES", "root", "root");
             $conexion->query("SET NAMES 'utf8'");
             return $conexion;
         }

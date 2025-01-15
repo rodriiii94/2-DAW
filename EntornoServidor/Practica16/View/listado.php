@@ -23,7 +23,7 @@ session_start();
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
       <?php
-        require_once 'Menu/menu.php';
+        require_once 'components/menu.php';
       ?>
       <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
         <H1>
@@ -40,18 +40,13 @@ session_start();
             </TD>
           </TR>
 
-          <?php
-          // Incluir el controlador para obtener los muebles
-          require_once '../Controller/MuebleController.php';
-          $muebleController = new MuebleController();
-          $muebles = $muebleController->listarMuebles();
-          foreach ($muebles as $mueble) {
-            echo "<TR>";
-            echo "<TD>" . $mueble['nombre'] . "</TD>";
-            echo "<TD>" . number_format($mueble['precio'], 2) . " €</TD>";
-            echo "</TR>";
-          }
-          ?>
+            <!-- Recorrer los muebles y mostrarlos en la tabla -->
+            <?php foreach ($muebles as $mueble): ?>
+            <TR>
+              <TD><?php echo htmlspecialchars($mueble['nombre']); ?></TD> <!-- Mostrar el nombre del mueble -->
+              <TD><?php echo number_format($mueble['precio'], 2); ?> €</TD> <!-- Mostrar el precio del mueble -->
+            </TR>
+            <?php endforeach; ?>
         </TABLE>
       </TD>
     </TR>

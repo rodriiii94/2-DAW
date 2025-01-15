@@ -1,8 +1,7 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
-     header("Location: login.php");
+     header("Location: ../index.php?controlador=Usuario&metodo=registro"); // Redirige a la página de registro
      exit();
 }
 ?>
@@ -28,7 +27,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
      <TABLE HEIGHT=85% WIDTH=100%>
           <TR>
                <?php
-               require_once("Menu/menu.php");
+               require_once "components/menu.php";
                ?>
                <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
                     <H1>
@@ -38,7 +37,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                     <BR>
                     <BR>
                     <!-- Formulario de selección de pieza -->
-                    <FORM NAME="existencias" ACTION="/index.php?controlador=" METHOD="POST">
+                    <FORM NAME="existencias" ACTION="/index.php?controlador=Unidad&metodo=stock" METHOD="POST">
                          <TABLE>
                               <TR>
                                    <TD ALIGN="RIGHT">
@@ -47,10 +46,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                                    <TD>
                                         <SELECT NAME="pieza">
                                              <?php
-                                             // Incluir el controlador para obtener las piezas
-                                             require_once('../Controller/PiezaController.php');
-                                             $piezasController = new PiezaController();
-                                             $piezas = $piezasController->listado();
+                                             // Recorrer las piezas y mostrarlas en el select
                                              foreach ($piezas as $pieza) {
                                                   echo "<OPTION VALUE='" . $pieza['nombre'] . "'>" . $pieza['nombre'] . "</OPTION>";
                                              }

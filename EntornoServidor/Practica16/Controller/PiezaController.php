@@ -2,9 +2,10 @@
 
 class PiezaController {
     public function listado() {
-        require_once '../Model/Pieza.php';
+        require_once 'model/Pieza.php';
         $pieza = new Pieza();
-        require_once '../View/form_existencias.php';
-        return $pieza->getPiezas();
+        $piezas = $pieza->getPiezas();
+        // Cargo la vista para que pueda usar la variable $piezas
+        require_once 'view/form_existencias.php';
     }
 }

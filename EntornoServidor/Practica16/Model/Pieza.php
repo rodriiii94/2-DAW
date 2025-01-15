@@ -4,20 +4,25 @@ class Pieza {
     private $piezas = [];
 
     public function __construct() {
-        require_once("../Model/Conectar.php");
-        $this->db = Conectar::conexion();
+        require_once("model/Conexion.php");
+        $this->db = Conexion::conexion();
         $this->piezas = [];
     }
 
-    public function getPiezas() {
-        $consultaListado = "SELECT nombre FROM Pieza";
+    public function getPiezas(){
+        try {
+            $consulta = $this->db->prepare("SELECT nombre FROM Pieza");
+            $consulta->execute();
+            $this->piezas = $consulta->fetchAll(PDO::FETCH_ASSOC); // Guarda las piezas en un array
+            $consulta->closeCursor(); // Cierra la consulta
+            return $this->piezas; // Devuelve un array con las piezas
 
-        $consulta = $this->db->query($consultaListado);
-
-        while ($filas = $consulta->fetch(PDO::FETCH_ASSOC)) {
-            $this->piezas[] = $filas;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            $this->piezas = [];
+            
+        } finally {
+            $this->db = null; // Cierra la conexión
         }
-        return $this->piezas;
     }
-
 }

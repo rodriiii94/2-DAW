@@ -23,7 +23,7 @@ session_start();
     <TABLE HEIGHT=85% WIDTH=100%>
         <TR>
             <?php
-            require_once "Menu/menu.php";
+            require_once "components/menu.php";
             ?>
             <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
                 <H1>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-  header("Location: user_page.php");
+  header("Location: ../index.php?controlador=Usuario&metodo=user_page"); // Redirige a la página de usuario
   exit();
 }
 ?>
@@ -27,7 +27,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
       <?php
-      require_once 'Menu/menu.php';
+      require_once 'components/menu.php';
       ?>
       <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
         <H1>Identif&iacute;quese
@@ -65,5 +65,6 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
     </TR>
   </TABLE>
 </BODY>
+
 
 </HTML>

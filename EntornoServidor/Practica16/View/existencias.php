@@ -1,10 +1,9 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
-     header("Location: login.php");
+     header("Location: ../index.php?controlador=Usuario&metodo=registro"); // Redirige a la página de registro
      exit();
-}
+ }
 ?>
 
 <HTML>
@@ -28,13 +27,16 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
      <TABLE HEIGHT=85% WIDTH=100%>
           <TR>
                <?php
-               require_once("Menu/menu.php");
+               require_once "components/menu.php";
                ?>
                <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
                     <H1>
                          Informaci&oacute;n de la pieza seleccionada
                     </H1>
-                    // TODO: Mostrar la información de la pieza seleccionada
+                    <?php
+                    // Recibir la pieza seleccionada y mostrarla
+                    echo "<P>La cantidad de unidades disponibles de la pieza seleccionada es: " . $unidades . "</P>";
+                    ?>
                     <BR>
                </TD>
           </TR>
