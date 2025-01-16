@@ -7,13 +7,13 @@ $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
 if ($accion === 'logged') {
     // Verificación para usuarios logueados
     if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
-        header("Location: ../index.php?controlador=Usuario&metodo=registro"); // Redirige a la página de registro
+        header("Location: ../index.php?controlador=Usuario&accion=registro"); // Redirige a la página de registro
         exit();
     }
 } elseif ($accion === 'nologged') {
     // Verificación para usuarios no logueados
     if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-        header("Location: ../index.php?controlador=Usuario&metodo=user_page"); // Redirige a la página de usuario
+        header("Location: ../index.php?controlador=Usuario&accion=user_page"); // Redirige a la página de usuario
         exit();
     }
 } else {

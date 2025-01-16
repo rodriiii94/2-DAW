@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
-  header("Location: ../index.php?controlador=Usuario&metodo=user_page"); // Redirige a la página de usuario
+  header("Location: ../index.php?controlador=Usuario&accion=user_page"); // Redirige a la página de usuario
   exit();
 }
 ?>
@@ -33,7 +33,7 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
         <H1>Identif&iacute;quese
         </H1>
         <!-- Formulario de identificación -->
-        <FORM NAME="login" ACTION="/index.php?controlador=Usuario&metodo=login" METHOD="POST">
+        <FORM NAME="login" ACTION="/index.php?controlador=Usuario&accion=login" METHOD="POST">
           <TABLE>
             <TR>
               <TD ALIGN="RIGHT">

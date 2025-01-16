@@ -42,6 +42,6 @@ class Usuario {
     function cerrarSesion() {
         session_unset(); // Limpia todas las variables de sesión
         session_destroy(); // Destruye todas las sesiones
-        header(header: "Location: ../index.php?controlador=Usuario&metodo=registro"); // Redirige al index
+        header(header: "Location: ../index.php?controlador=Usuario&accion=registro"); // Redirige al index
     }
 }

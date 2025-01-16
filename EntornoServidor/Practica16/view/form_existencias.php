@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
-     header("Location: ../index.php?controlador=Usuario&metodo=registro"); // Redirige a la página de registro
+     header("Location: ../index.php?controlador=Usuario&accion=registro"); // Redirige a la página de registro
      exit();
 }
 ?>
@@ -37,7 +37,7 @@ if (!isset($_SESSION['logged']) || $_SESSION['logged'] !== true) {
                     <BR>
                     <BR>
                     <!-- Formulario de selección de pieza -->
-                    <FORM NAME="existencias" ACTION="/index.php?controlador=Unidad&metodo=stock" METHOD="POST">
+                    <FORM NAME="existencias" ACTION="/index.php?controlador=Unidad&accion=stock" METHOD="POST">
                          <TABLE>
                               <TR>
                                    <TD ALIGN="RIGHT">
