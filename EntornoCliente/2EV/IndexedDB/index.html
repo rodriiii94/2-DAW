@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function esCompatible() {
+            if (!window.indexedDB) {
+                alert("Tu navegador NO soporta una versión estable de indexedDB.");
+            } else {
+                alert("Tu navegador SÍ soporta una versión estable de indexedDB.");
+            }
+
+            alert("Versión del navegador: " + navigator.userAgent);
+        }
+
+        function crearDB() {
+            var db;
+            var request = window.indexedDB.open("Deportes", 1);
+
+            request.onerror = function(event) {
+                console.log("Error al abrir la base de datos:", event);
+            };
+
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                console.log("Base de datos abierta con éxito");
+            };
+
+            request.onupgradeneeded = function(event) {
+                db = event.target.result;
+                var objectStore = db.createObjectStore("deporte", { keyPath: "id" });
+                objectStore.createIndex("nombre", "nombre", { unique: false });
+                console.log("Almacén de objetos creado con éxito");
+            };
+        }
+
+        function insertarDatos() {
+            var db;
+            var request = window.indexedDB.open("Deportes", 1);
+
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                var transaction = db.transaction(["deporte"], "readwrite");
+                var objectStore = transaction.objectStore("deporte");
+
+                var deporte1 = { id: 1, nombre: "Fútbol" };
+                var deporte2 = { id: 2, nombre: "Baloncesto" };
+
+                objectStore.add(deporte1);
+                objectStore.add(deporte2);
+
+                transaction.oncomplete = function() {
+                    console.log("Transacción completada: datos insertados con éxito");
+                };
+
+                transaction.onerror = function(event) {
+                    console.log("Error en la transacción:", event);
+                };
+            };
+
+            request.onerror = function(event) {
+                console.log("Error al abrir la base de datos:", event);
+            };
+        }
+    </script>
+</head>
+<body>
+    <button onclick="esCompatible()">Verificar compatibilidad</button>
+    <button onclick="crearDB()">Crear base de datos</button>
+    <button onclick="insertarDatos()">Insertar datos</button>
+</body>
+</html>
