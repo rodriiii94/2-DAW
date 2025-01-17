@@ -451,3 +451,47 @@ Si cambia la propiedad de visualización del elemento `<div>` de bloque a bloque
 La etiqueta `<noscript>` se utiliza para proporcionar contenido alternativo para los navegadores que no admiten scripts o que tienen los scripts desactivados.
 [Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_noscript)
 ![alt text](image-41.png)
+
+#### 11. Una ruta de archivo la ubicación de un archivo en la estructura de carpetas de un sitio web. Las rutas de archivos se utilizan al vincular archivos externos, como
+
+- Hojas de estilo CSS
+- Archivos JavaScript
+- Imágenes
+- Páginas web
+
+#### 13. Rutas relativas
+
+Una ruta de archivo apunta a un archivo relativo a la página actual.
+En el siguiente ejemplo, la ruta de archivo apunta a un archivo en la carpeta de imágenes del sitio web:
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_files_relative)
+![alt text](image-42.png)
+
+#### 14. Utilizar rutas de archivos relativas
+
+Al utilizar rutas de archivos relativas, las páginas web no estarán vinculadas a su URL base actual. Todos los enlaces funcionarán en su propio ordenador (localhost), así como en su dominio público actual.
+
+#### 15. Elementos y tecnicas de diseño HTML
+
+- `<header>`: Define un encabezado para un documento o una sección.
+- `<nav>`: Define enlaces de navegación.
+- `<section>`: Define una sección en un documento.
+- `<article>`: Define un artículo.
+- `<aside>`: Define contenido aparte del contenido principal.
+- `<footer>`: Define un pie de página para un documento o una sección.
+- `<details>`: Define detalles adicionales que el usuario puede ver o ocultar.
+- `<summary>`: Define un encabezado visible para un elemento `<details>`.
+
+#### 16. Técnicas para columnas
+
+- CSS Frameworks
+- CSS Float
+- CSS Flexbox
+- CSS Grid
+
+#### 17. CSS Float
+
+La propiedad CSS float se utiliza para colocar un elemento a la izquierda o a la derecha de su contenedor, lo que permite que el texto y otros elementos fluyan alrededor de él.
+
+[Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float)
+![alt text](image-43.png)
