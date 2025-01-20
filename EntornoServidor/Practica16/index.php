@@ -3,7 +3,7 @@ session_start();
 
 // declarar la variable del controlador por defecto
 $controlador = "Principal";
-// deckarar ka variale del método por defecto
+// declarar la variale del método por defecto
 $accion = "principal"; 
 
 // si se recibe un controlador por GET, se asigna a la variable
