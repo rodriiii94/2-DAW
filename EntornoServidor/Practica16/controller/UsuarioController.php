@@ -1,11 +1,6 @@
 <?php
 require_once 'model/Usuario.php';
 class UsuarioController {
-    public function __construct() {
-        if (isset($_GET['accion']) && method_exists($this, $_GET['accion'])) {
-            $this->{$_GET['accion']}();
-        }
-    }
 
     public function registro() {
         require_once 'view/login.php';
