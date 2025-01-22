@@ -23,7 +23,7 @@ session_start();
   <TABLE HEIGHT=85% WIDTH=100%>
     <TR>
       <?php
-        require_once 'components/menu.php';
+      require_once 'components/menu.php';
       ?>
       <TD WIDTH=85% ALIGN=CENTER VALIGN=CENTER>
         <H1>
@@ -40,14 +40,31 @@ session_start();
             </TD>
           </TR>
 
-            <!-- Recorrer los muebles y mostrarlos en la tabla -->
-            <?php foreach ($muebles as $mueble): ?>
+          <!-- Recorrer los muebles y mostrarlos en la tabla -->
+          <?php foreach ($muebles as $mueble): ?>
             <TR>
               <TD><?php echo htmlspecialchars($mueble['nombre']); ?></TD> <!-- Mostrar el nombre del mueble -->
               <TD><?php echo number_format($mueble['precio'], 2); ?> €</TD> <!-- Mostrar el precio del mueble -->
             </TR>
-            <?php endforeach; ?>
+          <?php endforeach; ?>
         </TABLE>
+        <br>
+        <!-- Botones de paginación -->
+        <form method="GET" action="">
+          <input type="hidden" name="controlador" value="Mueble">
+          <input type="hidden" name="accion" value="listarMuebles">
+
+          <?php if ($pagina > 1): ?>
+            <button type="submit" name="pagina" value="<?php echo $pagina - 1; ?>">Anterior</button>
+          <?php endif; ?>
+
+          <span>Página <?php echo $pagina; ?> de <?php echo $totalPaginas; ?></span>
+
+          <?php if ($pagina < $totalPaginas): ?>
+            <button type="submit" name="pagina" value="<?php echo $pagina + 1; ?>">Siguiente</button>
+          <?php endif; ?>
+        </form>
+
       </TD>
     </TR>
   </TABLE>

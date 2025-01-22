@@ -1,7 +1,7 @@
 <td width="15%" bgcolor="#DDFFFF" valign="center">
   <a href="/index.php?controlador=Principal&accion=principal">Principal</a>
   <br><br>
-  <a href="/index.php?controlador=Mueble&accion=listarMuebles">Productos</a>
+  <a href="/index.php?controlador=Mueble&accion=listarMuebles&pagina=1">Productos</a>
   <br><br>
   <?php
   if (isset($_SESSION['logged']) && $_SESSION['logged'] === true): ?>
