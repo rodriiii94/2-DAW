@@ -18,6 +18,7 @@ $(document).ready(function () {
       // db = req.result;
       db = this.result;
       console.log("openDb DONE");
+      displayPubList();
     };
     req.onerror = function (evt) {
       console.error("openDb:", evt.target.errorCode);
@@ -31,7 +32,7 @@ $(document).ready(function () {
       });
 
       store.createIndex("nombre", "nombre", { unique: false });
-      store.createIndex("telefono", "telefono", { unique: true });
+      store.createIndex("tel", "tel", { unique: true });
       store.createIndex("email", "email", { unique: true });
       store.createIndex("empresa", "empresa", { unique: false });
     };
@@ -51,6 +52,7 @@ $(document).ready(function () {
     var req = store.clear();
     req.onsuccess = function (evt) {
       displayActionSuccess("Store cleared");
+      displayPubList(store);
     };
     req.onerror = function (evt) {
       console.error("clearObjectStore:", evt.target.errorCode);
@@ -135,66 +137,6 @@ $(document).ready(function () {
     };
   }
 
-  // function newViewerFrame() {
-  //   var viewer = $("#pub-viewer");
-  //   viewer.empty();
-  //   //var iframe = $("<iframe />");
-  //   var iframe = $("<iframe>");
-  //   viewer.append(iframe);
-  //   return iframe;
-  // }
-
-  function setInViewer(key) {
-    console.log("setInViewer:", arguments);
-    key = Number(key);
-    if (key == current_view_pub_key) return;
-
-    current_view_pub_key = key;
-
-    var store = getObjectStore(DB_STORE_NAME, "readonly");
-    getBlob(key, store, function (blob) {
-      console.log("setInViewer blob:", blob);
-      var iframe = newViewerFrame();
-
-      // It is not possible to set a direct link to the
-      // blob to provide a mean to directly download it.
-      if (blob.type == "text/html") {
-        var reader = new FileReader();
-        reader.onload = function (evt) {
-          var html = evt.target.result;
-          iframe.load(function () {
-            $(this).contents().find("html").html(html);
-          });
-        };
-        reader.readAsText(blob);
-      } else if (blob.type.indexOf("image/") == 0) {
-        iframe.load(function () {
-          var img_id = "image-" + key;
-          var img = $('<img id="' + img_id + '"/>');
-          $(this).contents().find("body").html(img);
-          var obj_url = window.URL.createObjectURL(blob);
-          $(this)
-            .contents()
-            .find("#" + img_id)
-            .attr("src", obj_url);
-          window.URL.revokeObjectURL(obj_url);
-        });
-      } else if (blob.type == "application/pdf") {
-        $("*").css("cursor", "wait");
-        var obj_url = window.URL.createObjectURL(blob);
-        iframe.load(function () {
-          $("*").css("cursor", "auto");
-        });
-        iframe.attr("src", obj_url);
-        window.URL.revokeObjectURL(obj_url);
-      } else {
-        iframe.load(function () {
-          $(this).contents().find("body").html("No view available");
-        });
-      }
-    });
-  }
-
   /**
    * @param {string} tel
    * @param {string} nombre
@@ -219,7 +161,7 @@ $(document).ready(function () {
     req.onsuccess = function (evt) {
       console.log("Insertion in DB successful");
       displayActionSuccess();
-      displayPubList();
+      displayPubList(store);
     };
     req.onerror = function () {
       console.error("addPublication error", this.error);
@@ -246,47 +188,64 @@ $(document).ready(function () {
     };
   }
 
-  /**
-   * @param {number} key
-   * @param {IDBObjectStore=} store
-   */
-  function deletePublication(key, store) {
+  function deletePublicationFromNom(nombre) {
     console.log("deletePublication:", arguments);
-
-    if (typeof store == "undefined")
-      store = getObjectStore(DB_STORE_NAME, "readwrite");
-
-    // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
-    // the result of the Object Store Deletion Operation algorithm is
-    // undefined, so it's not possible to know if some records were actually
-    // deleted by looking at the request result.
-    var req = store.get(key);
-    req.onsuccess = function (evt) {
-      var record = evt.target.result;
-      console.log("record:", record);
-      if (typeof record == "undefined") {
+    var store = getObjectStore(DB_STORE_NAME, "readwrite");
+    var req = store.index("nombre");
+    req.get(nombre).onsuccess = function (evt) {
+      if (typeof evt.target.result == "undefined") {
         displayActionFailure("No matching record found");
         return;
       }
-      // Warning: The exact same key used for creation needs to be passed for
-      // the deletion. If the key was a Number for creation, then it needs to
-      // be a Number for deletion.
-      req = store.delete(key);
-      req.onsuccess = function (evt) {
-        console.log("evt:", evt);
-        console.log("evt.target:", evt.target);
-        console.log("evt.target.result:", evt.target.result);
-        console.log("delete successful");
-        displayActionSuccess("Deletion successful");
-      };
-      req.onerror = function (evt) {
-        console.error("deletePublication:", evt.target.errorCode);
-      };
+      deletePublication(evt.target.result.id, store);
+    };
+    req.onerror = function (evt) {
+      console.error("deletePublicationFromNom:", evt.target.errorCode);
+    };
+  }
+
+/**
+     * @param {number} key
+     * @param {IDBObjectStore=} store
+     */
+function deletePublication(key, store) {
+  console.log("deletePublication:", arguments);
+
+  if (typeof store == "undefined")
+    store = getObjectStore(DB_STORE_NAME, "readwrite");
+
+  // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
+  // the result of the Object Store Deletion Operation algorithm is
+  // undefined, so it's not possible to know if some records were actually
+  // deleted by looking at the request result.
+  var req = store.get(key);
+  req.onsuccess = function (evt) {
+    var record = evt.target.result;
+    console.log("record:", record);
+    if (typeof record == "undefined") {
+      displayActionFailure("No matching record found");
+      return;
+    }
+    // Warning: The exact same key used for creation needs to be passed for
+    // the deletion. If the key was a Number for creation, then it needs to
+    // be a Number for deletion.
+    req = store.delete(key);
+    req.onsuccess = function (evt) {
+      console.log("evt:", evt);
+      console.log("evt.target:", evt.target);
+      console.log("evt.target.result:", evt.target.result);
+      console.log("delete successful");
+      displayActionSuccess("Deletion successful");
+      displayPubList(store);
     };
     req.onerror = function (evt) {
       console.error("deletePublication:", evt.target.errorCode);
     };
-  }
+  };
+  req.onerror = function (evt) {
+    console.error("deletePublication:", evt.target.errorCode);
+  };
+}
 
   function displayActionSuccess(msg) {
     msg = typeof msg != "undefined" ? "Success: " + msg : "Success";
@@ -316,10 +275,27 @@ $(document).ready(function () {
       var email = $("#pub-email").val();
       var empresa = $("#pub-empresa").val();
 
-      if (!nombre || !tel) {
-        displayActionFailure("Required field(s) missing");
-        //TODO: Make note not hidden of the fields that weren't filled in the form 
-        return;
+      // if (!nombre || !tel) {
+      //   displayActionFailure("Required field(s) missing");
+      //   $(".note").prop("hidden", false);
+      //   $("#pub-nombre").css("border-color", "red");
+      //   $("#pub-tel").css("border-color", "red");
+      //   return;
+      // }
+      
+      if (!nombre && !tel) {
+        displayActionFailure("Los campos Nombre y Teléfono son obligatorios");
+        $(".note").prop("hidden", false);
+        $("#pub-nombre").css("border-color", "red");
+        $("#pub-tel").css("border-color", "red");
+      }else if (!nombre) {
+        displayActionFailure("El campo Nombre es obligtaorio");
+        $(".note").prop("hidden", false);
+        $("#pub-nombre").css("border-color", "red");
+      } else if (!tel) {
+        displayActionFailure("El campo Teléfono es obligtaorio");
+        $(".note").prop("hidden", false);
+        $("#pub-tel").css("border-color", "red");
       }
 
       // Validación de teléfono con regex
@@ -346,18 +322,12 @@ $(document).ready(function () {
     $("#delete-button").click(function (evt) {
       console.log("delete ...");
       var tel = $("#pub-tel-to-delete").val();
-      var key = $("#key-to-delete").val();
+      var nombre = $("#pub-nombre-to-delete").val();
 
-      if (tel != "") {
+      if (nombre !== "") {
+        deletePublicationFromNom(nombre);
+      } else if (tel !== "") {
         deletePublicationFromTel(tel);
-      } else if (key != "") {
-        // Better use Number.isInteger if the engine has EcmaScript 6
-        if (key == "" || isNaN(key)) {
-          displayActionFailure("Invalid key");
-          return;
-        }
-        key = Number(key);
-        deletePublication(key);
       }
     });
 

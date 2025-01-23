@@ -13,10 +13,6 @@
     <div class="container">
         <header class="glass-effect">
             <h1>Agenda Online</h1>
-            <div class="note">
-                <!-- <p>Prueba válida para:</p>
-                <div id="compat"></div> -->
-            </div>
         </header>
 
         <div id="msg"></div>
@@ -54,12 +50,12 @@
                 <h2>Eliminar Contacto</h2>
                 <form id="delete-form">
                     <div class="form-group">
-                        <label for="pub-biblioid-to-delete">ID Bibliográfico</label>
-                        <input type="text" id="pub-biblioid-to-delete" name="pub-biblioid-to-delete">
+                        <label for="pub-nombre-to-delete">Nombre</label>
+                        <input type="text" id="pub-nombre-to-delete" name="pub-nombre-to-delete">
                     </div>
                     <div class="form-group">
-                        <label for="key-to-delete">Clave</label>
-                        <input type="text" id="key-to-delete" name="key-to-delete">
+                        <label for="pub-tel-to-delete">Teléfono</label>
+                        <input type="text" id="pub-tel-to-delete" name="pub-tel-to-delete">
                     </div>
                     <div class="button-pane">
                         <button type="button" id="delete-button" class="btn-primary">Eliminar</button>
@@ -69,17 +65,21 @@
             </section>
 
             <section class="form-section glass-effect">
-                <h2>Buscar Publicaciones</h2>
+                <h2>Buscar Contactos</h2>
                 <form id="search-form">
-                    <div class="button-pane">
-                        <button type="button" id="search-list-button" class="btn-primary">Listar contenido</button>
+                    <div class="form-group">
+                        <label for="pub-nombre-to-search">Nombre</label>
+                        <input type="text" id="pub-nombre-to-search" name="pub-nombre-to-search">
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-empresa-to-search">Empresa</label>
+                        <input type="text" id="pub-empresa-to-search" name="pub-empresa-to-search">
                     </div>
                 </form>
             </section>
 
             <section class="results-section glass-effect">
                 <div id="pub-msg"></div>
-                <!-- <div id="pub-viewer"></div> -->
                 <ul id="pub-list"></ul>
             </section>
         </main>
