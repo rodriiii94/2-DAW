@@ -1,17 +1,4 @@
 $(document).ready(function () {
-  var COMPAT_ENVS = [
-    ["Firefox", ">= 16.0"],
-    [
-      "Google Chrome",
-      ">= 24.0 (you may need to get Google Chrome Canary), NO Blob storage support",
-    ],
-  ];
-  var compat = $("#compat");
-  compat.empty();
-  compat.append('<ul id="compat-list"></ul>');
-  COMPAT_ENVS.forEach(function (val, idx, array) {
-    $("#compat-list").append("<li>" + val[0] + ": " + val[1] + "</li>");
-  });
 
   const DB_NAME = "contactos";
   const DB_VERSION = 1; // Use a long long for this value (don't use a float)
@@ -23,7 +10,7 @@ $(document).ready(function () {
   var current_view_pub_key;
 
   function openDb() {
-    console.log("openDb ...");
+    console.log("DBAbierta ...");
     var req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onsuccess = function (evt) {
       // Better use "this" than "req" to get the result to avoid problems with
@@ -45,6 +32,8 @@ $(document).ready(function () {
 
       store.createIndex("nombre", "nombre", { unique: false });
       store.createIndex("telefono", "telefono", { unique: true });
+      store.createIndex("email", "email", { unique: true });
+      store.createIndex("empresa", "empresa", { unique: false });
     };
   }
 
@@ -123,27 +112,15 @@ $(document).ready(function () {
         req = store.get(cursor.key);
         req.onsuccess = function (evt) {
           var value = evt.target.result;
+          
           var list_item = $(
-            `<li>[${cursor.key}] (tel: ${value.tel}) ${value.nombre}</li>`
+            `<li>
+              <strong>Nombre:</strong> ${value.nombre}<br>
+              <strong>Teléfono:</strong> ${value.tel}<br>
+              <strong>Email:</strong> ${value.email ? value.email : "No disponible"}<br>
+              <strong>Empresa:</strong> ${value.empresa ? value.empresa : "No disponible"}
+            </li>`
           );
-          if (value.email != null) list_item.append(" - " + value.email);
-
-          if (
-            value.hasOwnProperty("blob") &&
-            typeof value.blob != "undefined"
-          ) {
-            var link = $(`<a href="' + cursor.key + '">File</a>`);
-            link.on("click", function () {
-              return false;
-            });
-            link.on("mouseenter", function (evt) {
-              setInViewer(evt.target.getAttribute("href"));
-            });
-            list_item.append(" / ");
-            list_item.append(link);
-          } else {
-            list_item.append(" / No attached file");
-          }
           pub_list.append(list_item);
         };
 
@@ -158,14 +135,14 @@ $(document).ready(function () {
     };
   }
 
-  function newViewerFrame() {
-    var viewer = $("#pub-viewer");
-    viewer.empty();
-    //var iframe = $("<iframe />");
-    var iframe = $("<iframe>");
-    viewer.append(iframe);
-    return iframe;
-  }
+  // function newViewerFrame() {
+  //   var viewer = $("#pub-viewer");
+  //   viewer.empty();
+  //   //var iframe = $("<iframe />");
+  //   var iframe = $("<iframe>");
+  //   viewer.append(iframe);
+  //   return iframe;
+  // }
 
   function setInViewer(key) {
     console.log("setInViewer:", arguments);
@@ -221,66 +198,12 @@ $(document).ready(function () {
   /**
    * @param {string} tel
    * @param {string} nombre
-   * @param {number} email
-   * @param {string} url the URL of the image to download and store in the local
-   *   IndexedDB database. The resource behind this URL is subjected to the
-   *   "Same origin policy", thus for this method to work, the URL must come from
-   *   the same origin as the web site/app this code is deployed on.
+   * @param {string} email
+   * @param {string} empresa
    */
-  function addPublicationFromUrl(tel, nombre, email, url) {
-    console.log("addPublicationFromUrl:", arguments);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    // Setting the wanted responseType to "blob"
-    // http://www.w3.org/TR/XMLHttpRequest2/#the-response-attribute
-    xhr.responseType = "blob";
-    xhr.onload = function (evt) {
-      if (xhr.status == 200) {
-        console.log("Blob retrieved");
-        var blob = xhr.response;
-        console.log("Blob:", blob);
-        addPublication(tel, nombre, email, blob);
-      } else {
-        console.error(
-          "addPublicationFromUrl error:",
-          xhr.responseText,
-          xhr.status
-        );
-      }
-    };
-    xhr.send();
-
-    // We can't use jQuery here because as of jQuery 1.8.3 the new "blob"
-    // responseType is not handled.
-    // http://bugs.jquery.com/ticket/11461
-    // http://bugs.jquery.com/ticket/7248
-    // $.ajax({
-    //   url: url,
-    //   type: 'GET',
-    //   xhrFields: { responseType: 'blob' },
-    //   success: function(data, textStatus, jqXHR) {
-    //     console.log("Blob retrieved");
-    //     console.log("Blob:", data);
-    //     // addPublication(tel, nombre, email, data);
-    //   },
-    //   error: function(jqXHR, textStatus, errorThrown) {
-    //     console.error(errorThrown);
-    //     displayActionFailure("Error during blob retrieval");
-    //   }
-    // });
-  }
-
-  /**
-   * @param {string} tel
-   * @param {string} nombre
-   * @param {number} email
-   * @param {Blob=} blob
-   */
-  function addPublication(tel, nombre, email, blob) {
+  function addPublication(tel, nombre, email, empresa) {
     console.log("addPublication arguments:", arguments);
-    var obj = { tel: tel, nombre: nombre, email: email };
-    if (typeof blob != "undefined") obj.blob = blob;
+    var obj = { tel: tel, nombre: nombre, email: email, empresa: empresa };
 
     var store = getObjectStore(DB_STORE_NAME, "readwrite");
     var req;
@@ -289,13 +212,14 @@ $(document).ready(function () {
     } catch (e) {
       if (e.name == "DataCloneError")
         displayActionFailure(
-          "This engine doesn't know how to clone a Blob, " + "use Firefox"
+          "This engine doesn't know how to clone a Blob, use Firefox"
         );
       throw e;
     }
     req.onsuccess = function (evt) {
       console.log("Insertion in DB successful");
       displayActionSuccess();
+      displayPubList();
     };
     req.onerror = function () {
       console.error("addPublication error", this.error);
@@ -306,7 +230,7 @@ $(document).ready(function () {
   /**
    * @param {string} tel
    */
-  function deletePublicationFromBib(tel) {
+  function deletePublicationFromTel(tel) {
     console.log("deletePublication:", arguments);
     var store = getObjectStore(DB_STORE_NAME, "readwrite");
     var req = store.index("tel");
@@ -318,7 +242,7 @@ $(document).ready(function () {
       deletePublication(evt.target.result.id, store);
     };
     req.onerror = function (evt) {
-      console.error("deletePublicationFromBib:", evt.target.errorCode);
+      console.error("deletePublicationFromTel:", evt.target.errorCode);
     };
   }
 
@@ -389,6 +313,9 @@ $(document).ready(function () {
       console.log("add ...");
       var nombre = $("#pub-nombre").val();
       var tel = $("#pub-tel").val();
+      var email = $("#pub-email").val();
+      var empresa = $("#pub-empresa").val();
+
       if (!nombre || !tel) {
         displayActionFailure("Required field(s) missing");
         //TODO: Make note not hidden of the fields that weren't filled in the form 
@@ -402,7 +329,6 @@ $(document).ready(function () {
         return;
       }
 
-      var email = $("#pub-email").val();
       // Validación de email con regex
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (email !== "" && !emailRegex.test(email)) {
@@ -413,21 +339,8 @@ $(document).ready(function () {
         email = null;
       }
 
-      var file_input = $("#pub-file");
-      if (file_input.length > 0) {
-        var selected_file = file_input.get(0).files[0];
-        console.log("selected_file:", selected_file);
-      } else {
-        var selected_file = null;
-      }
-      var file_url = $("#pub-file-url").val();
-      if (selected_file) {
-        addPublication(tel, nombre, email, selected_file);
-      } else if (file_url) {
-        addPublicationFromUrl(tel, nombre, email, file_url);
-      } else {
-        addPublication(tel, nombre, email);
-      }
+      addPublication(tel, nombre, email, empresa);
+      
     });
 
     $("#delete-button").click(function (evt) {
@@ -436,7 +349,7 @@ $(document).ready(function () {
       var key = $("#key-to-delete").val();
 
       if (tel != "") {
-        deletePublicationFromBib(tel);
+        deletePublicationFromTel(tel);
       } else if (key != "") {
         // Better use Number.isInteger if the engine has EcmaScript 6
         if (key == "" || isNaN(key)) {
