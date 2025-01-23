@@ -3,53 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Online</title>
-    <link rel="stylesheet" href="styles/styles.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/db.js"></script>
-    <script src="js/app.js"></script>
+    <title>IndexedDB Demo: Almacenamiento de blobs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/funcionesDB.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="dark-mode">
     <div class="container">
-        <h1>Agenda Online</h1>
-        
-        <form id="contactForm">
-            <input type="text" id="nombre" placeholder="Nombre *" required>
-            <div id="nombreError" class="error-message"></div>
-            <input type="tel" id="telefono" placeholder="Teléfono *" required>
-            <div id="telefonoError" class="error-message"></div>
-            <input type="text" id="empresa" placeholder="Empresa">
-            <input type="email" id="email" placeholder="Email">
-            <div id="emailError" class="error-message"></div>
-            <button type="submit">Guardar Contacto</button>
-        </form>
+        <header class="glass-effect">
+            <h1>Agenda Online</h1>
+            <div class="note">
+                <!-- <p>Prueba válida para:</p>
+                <div id="compat"></div> -->
+            </div>
+        </header>
 
-        <div id="mensajes"></div>
+        <div id="msg"></div>
 
-        <input type="text" id="busqueda" placeholder="Buscar contactos...">
+        <main>
+            <section class="form-section glass-effect">
+                <h2>Añadir Contacto</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="pub-nombre" class="required">Nombre</label>
+                        <input type="text" id="pub-nombre" name="pub-nombre" required>
+                        <span class="note" hidden="true">*Obligatorio*</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-tel" class="required">Teléfono</label>
+                        <input type="text" id="pub-tel" name="pub-tel" required>
+                        <span class="note" hidden="true" >*Obligatorio*</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-empresa">Empresa</label>
+                        <input type="text" id="pub-empresa" name="pub-empresa">
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-email">Email</label>
+                        <input type="email" id="pub-email" name="pub-email">
+                    </div>
+                    <div class="button-pane">
+                        <button type="button" id="add-button" class="btn-primary">Agregar</button>
+                        <button type="reset" id="register-form-reset" class="btn-secondary">Limpiar</button>
+                    </div>
+                </form>
+            </section>
 
-        <div class="sort-options">
-            <label>Ordenar por:</label>
-            <select id="sortOption">
-                <option value="nombre">Nombre</option>
-                <option value="telefono">Teléfono</option>
-                <option value="empresa">Empresa</option>
-            </select>
-        </div>
+            <section class="form-section glass-effect">
+                <h2>Eliminar Contacto</h2>
+                <form id="delete-form">
+                    <div class="form-group">
+                        <label for="pub-biblioid-to-delete">ID Bibliográfico</label>
+                        <input type="text" id="pub-biblioid-to-delete" name="pub-biblioid-to-delete">
+                    </div>
+                    <div class="form-group">
+                        <label for="key-to-delete">Clave</label>
+                        <input type="text" id="key-to-delete" name="key-to-delete">
+                    </div>
+                    <div class="button-pane">
+                        <button type="button" id="delete-button" class="btn-primary">Eliminar</button>
+                        <button type="button" id="clear-store-button" class="btn-destructive">Limpiar todo</button>
+                    </div>
+                </form>
+            </section>
 
-        <ul id="listaContactos"></ul>
+            <section class="form-section glass-effect">
+                <h2>Buscar Publicaciones</h2>
+                <form id="search-form">
+                    <div class="button-pane">
+                        <button type="button" id="search-list-button" class="btn-primary">Listar contenido</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="results-section glass-effect">
+                <div id="pub-msg"></div>
+                <div id="pub-viewer"></div>
+                <ul id="pub-list"></ul>
+            </section>
+        </main>
     </div>
-
-    <div id="confirmDialog" class="modal">
-        <div class="modal-content">
-            <p>¿Está seguro de que desea eliminar este contacto?</p>
-            <button id="confirmYes">Sí</button>
-            <button id="confirmNo">No</button>
-        </div>
-    </div>
-
-    <script src="db.js"></script>
-    <script src="app.js"></script>
 </body>
 </html>
+
+
 
