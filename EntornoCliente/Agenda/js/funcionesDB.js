@@ -62,7 +62,6 @@ $(document).ready(function () {
     var req = store.clear();
     req.onsuccess = function (evt) {
       displayActionSuccess("Store cleared");
-      displayPubList(store);
     };
     req.onerror = function (evt) {
       console.error("clearObjectStore:", evt.target.errorCode);
@@ -118,6 +117,7 @@ $(document).ready(function () {
       var cursor = evt.target.result;
 
       // If the cursor is pointing at something, ask for the data
+      //TODO: reescribir la lista de contactos para que muestre los datos que yo quiero(nombre, telefono, empresa y email)
       if (cursor) {
         console.log("displayPubList cursor:", cursor);
         req = store.get(cursor.key);
@@ -296,7 +296,6 @@ $(document).ready(function () {
     req.onsuccess = function (evt) {
       console.log("Insertion in DB successful");
       displayActionSuccess();
-      displayPubList(store);
     };
     req.onerror = function () {
       console.error("addPublication error", this.error);
@@ -355,7 +354,6 @@ $(document).ready(function () {
         console.log("evt.target.result:", evt.target.result);
         console.log("delete successful");
         displayActionSuccess("Deletion successful");
-        displayPubList(store);
       };
       req.onerror = function (evt) {
         console.error("deletePublication:", evt.target.errorCode);
