@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Online</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Agenda Online</h1>
+        
+        <form id="contactForm">
+            <input type="text" id="nombre" placeholder="Nombre *" required>
+            <div id="nombreError" class="error-message"></div>
+            <input type="tel" id="telefono" placeholder="Teléfono *" required>
+            <div id="telefonoError" class="error-message"></div>
+            <input type="text" id="empresa" placeholder="Empresa">
+            <input type="email" id="email" placeholder="Email">
+            <div id="emailError" class="error-message"></div>
+            <button type="submit">Guardar Contacto</button>
+        </form>
+
+        <div id="mensajes"></div>
+
+        <input type="text" id="busqueda" placeholder="Buscar contactos...">
+
+        <div class="sort-options">
+            <label>Ordenar por:</label>
+            <select id="sortOption">
+                <option value="nombre">Nombre</option>
+                <option value="telefono">Teléfono</option>
+                <option value="empresa">Empresa</option>
+            </select>
+        </div>
+
+        <ul id="listaContactos"></ul>
+    </div>
+
+    <div id="confirmDialog" class="modal">
+        <div class="modal-content">
+            <p>¿Está seguro de que desea eliminar este contacto?</p>
+            <button id="confirmYes">Sí</button>
+            <button id="confirmNo">No</button>
+        </div>
+    </div>
+
+    <script src="db.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+

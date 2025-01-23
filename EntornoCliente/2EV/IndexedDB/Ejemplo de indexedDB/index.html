@@ -3,143 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base de datos indexedDB</title>
-
-
-<script
-  type="text/javascript"
-  src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-</script>
-<script type="text/javascript"  src="js/funcionesDB.js"> </script>
-
-<link rel="stylesheet" href="css/estilos.css" TYPE="text/css" MEDIA=screen>
+    <title>IndexedDB Demo: Almacenamiento de blobs</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/funcionesDB.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap">
+    <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
-<h1>IndexedDB Demo: storing blobs, e-publication example</h1>
-<div class="note">
-  <p>Prueba válida para:</p>
-  <div id="compat"></div>
-</div>
+<body class="dark-mode">
+    <div class="container">
+        <header class="glass-effect">
+            <h1>IndexedDB Demo</h1>
+            <div class="note">
+                <!-- <p>Prueba válida para:</p>
+                <div id="compat"></div> -->
+            </div>
+        </header>
 
-<div id="msg"></div>
+        <div id="msg"></div>
 
-    <form id="register-form">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <label for="pub-title" class="required"> Title: </label>
-        </td>
-        <td>
-          <input type="text" id="pub-title" name="pub-title" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="pub-biblioid" class="required">
-            Bibliographic ID:<br />
-            <span class="note">(ISBN, ISSN, etc.)</span>
-          </label>
-        </td>
-        <td>
-          <input type="text" id="pub-biblioid" name="pub-biblioid" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="pub-year"> Year: </label>
-        </td>
-        <td>
-          <input type="number" id="pub-year" name="pub-year" />
-        </td>
-      </tr>
-    </tbody>
-    <tbody>
-      <tr>
-        <td>
-          <label for="pub-file"> File image: </label>
-        </td>
-        <td>
-          <input type="file" id="pub-file" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="pub-file-url">
-            Online-file image URL:<br />
-            <span class="note">(same origin URL)</span>
-          </label>
-        </td>
-        <td>
-          <input type="text" id="pub-file-url" name="pub-file-url" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <main>
+            <section class="form-section glass-effect">
+                <h2>Agregar Publicación</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="pub-title" class="required">Título</label>
+                        <input type="text" id="pub-title" name="pub-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-biblioid" class="required">ID Bibliográfico</label>
+                        <input type="text" id="pub-biblioid" name="pub-biblioid" required>
+                        <span class="note">(ISBN, ISSN, etc.)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-year">Año</label>
+                        <input type="number" id="pub-year" name="pub-year">
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-file">Archivo de imagen</label>
+                        <input type="file" id="pub-file">
+                    </div>
+                    <div class="form-group">
+                        <label for="pub-file-url">URL de imagen en línea</label>
+                        <input type="text" id="pub-file-url" name="pub-file-url">
+                        <span class="note">(URL del mismo origen)</span>
+                    </div>
+                    <div class="button-pane">
+                        <button type="button" id="add-button" class="btn-primary">Agregar</button>
+                        <button type="reset" id="register-form-reset" class="btn-secondary">Limpiar</button>
+                    </div>
+                </form>
+            </section>
 
-  <div class="button-pane">
-    <input type="button" id="add-button" value="Add Publication" />
-    <input type="reset" id="register-form-reset" />
-  </div>
-</form>
+            <section class="form-section glass-effect">
+                <h2>Eliminar Publicación</h2>
+                <form id="delete-form">
+                    <div class="form-group">
+                        <label for="pub-biblioid-to-delete">ID Bibliográfico</label>
+                        <input type="text" id="pub-biblioid-to-delete" name="pub-biblioid-to-delete">
+                        <span class="note">(ISBN, ISSN, etc.)</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="key-to-delete">Clave</label>
+                        <input type="text" id="key-to-delete" name="key-to-delete">
+                        <span class="note">(por ejemplo 1, 2, 3, etc.)</span>
+                    </div>
+                    <div class="button-pane">
+                        <button type="button" id="delete-button" class="btn-primary">Eliminar</button>
+                        <button type="button" id="clear-store-button" class="btn-destructive">Limpiar todo</button>
+                    </div>
+                </form>
+            </section>
 
-<form id="delete-form">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <label for="pub-biblioid-to-delete">
-            Bibliographic ID:<br />
-            <span class="note">(ISBN, ISSN, etc.)</span>
-          </label>
-        </td>
-        <td>
-          <input
-            type="text"
-            id="pub-biblioid-to-delete"
-            name="pub-biblioid-to-delete" />
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label for="key-to-delete">
-            Key:<br />
-            <span class="note">(for example 1, 2, 3, etc.)</span>
-          </label>
-        </td>
-        <td>
-          <input type="text" id="key-to-delete" name="key-to-delete" />
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="button-pane">
-    <input type="button" id="delete-button" value="Delete Publication" />
-    <input
-      type="button"
-      id="clear-store-button"
-      value="Clear the whole store"
-      class="destructive" />
-  </div>
-</form>
+            <section class="form-section glass-effect">
+                <h2>Buscar Publicaciones</h2>
+                <form id="search-form">
+                    <div class="button-pane">
+                        <button type="button" id="search-list-button" class="btn-primary">Listar contenido</button>
+                    </div>
+                </form>
+            </section>
 
-<form id="search-form">
-  <div class="button-pane">
-    <input
-      type="button"
-      id="search-list-button"
-      value="Lista contenido BBDD" />
-  </div>
-</form>
-
-<div>
-  <div id="pub-msg"></div>
-  <div id="pub-viewer"></div>
-  <ul id="pub-list"></ul>
-  
-</div>
-
-
-    
+            <section class="results-section glass-effect">
+                <div id="pub-msg"></div>
+                <div id="pub-viewer"></div>
+                <ul id="pub-list"></ul>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
+
+
+
