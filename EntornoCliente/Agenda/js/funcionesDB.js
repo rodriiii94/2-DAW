@@ -428,6 +428,7 @@ $(document).ready(function () {
 
           // Change the "Add" button to "Update"
           $("#add-button").text("Actualizar").data("edit-id", id);
+          $("#edit-button").text("Editando").data("edit-id", id);
         }
       };
       req.onerror = function (evt) {
