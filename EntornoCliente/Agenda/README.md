@@ -1,3 +1,14 @@
+<style>
+  h1, h2, h3, h4, h5, h6 {
+    page-break-before: avoid;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  p {
+    page-break-inside: avoid;
+  }
+</style>
+
 # Manual de Usuario de la Agenda Online
 
 ## Tabla de Contenidos
@@ -8,10 +19,10 @@
   - [Requisitos](#requisitos)
   - [Instalación](#instalación)
   - [Uso](#uso)
-      - [Añadir un contacto](#añadir-un-contacto)
-      - [Eliminar un contacto](#eliminar-un-contacto)
-      - [Buscar un contacto](#buscar-un-contacto)
-      - [Editar un contacto](#editar-un-contacto)
+    - [Añadir un contacto](#añadir-un-contacto)
+    - [Eliminar un contacto](#eliminar-un-contacto)
+    - [Buscar un contacto](#buscar-un-contacto)
+    - [Editar un contacto](#editar-un-contacto)
 
 ## Introducción
 
@@ -29,7 +40,7 @@ Para instalar la Agenda Online, simplemente descarga el archivo ZIP y descomprí
 
 Una vez cargada la aplicación, podrás empezar a utilizarla de inmediato. Para añadir un nuevo contacto, haz clic en el botón `Añadir contacto` y rellena los campos del formulario. Para editar un contacto existente, haz clic en el botón `Editar` junto al contacto que desees modificar. Para eliminar un contacto, haz clic en el botón `Eliminar` junto al contacto que desees eliminar.
 
-#### Añadir un contacto
+### Añadir un contacto
 
 Para añadir un nuevo contacto a la agenda, sigue estos pasos:
 
@@ -40,7 +51,7 @@ Para añadir un nuevo contacto a la agenda, sigue estos pasos:
 1. Haz clic en el botón `Agregar` para añadir el contacto a la agenda.
 2. El contacto se añadirá a la lista y podrás verlo en la interfaz principal.
 
-#### Eliminar un contacto
+### Eliminar un contacto
 
 Se pueden eliminar contactos de la agenda de 2 maneras:
 
@@ -56,7 +67,7 @@ Se pueden eliminar contactos de la agenda de 2 maneras:
   <img src="img/image3.png" alt="alt text" width="200">
 </p>
 
-#### Buscar un contacto
+### Buscar un contacto
 
 Para buscar un contacto en la agenda, sigue estos pasos:
 
@@ -64,14 +75,14 @@ Para buscar un contacto en la agenda, sigue estos pasos:
 2. Haz clic en el botón `Buscar` para ver los resultados de la búsqueda.
 3. Se mostrarán los contactos que coincidan con el término de búsqueda en la lista principal.
 
-#### Editar un contacto
+### Editar un contacto
 
 Para editar un contacto existente en la agenda, sigue estos pasos:
 
 1. Haz clic en el botón `Editar` junto al contacto que desees modificar.
 
 <p align="center">
-  <img src="img/image2.png" alt="alt text" width="200">
+  <img src="img/image2.png" alt="alt text" width="500">
 </p>
 
 2. Se pasarán los datos del contacto al formulario, donde podrás modificarlos.

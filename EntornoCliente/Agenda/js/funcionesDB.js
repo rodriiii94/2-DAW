@@ -50,7 +50,7 @@ $(document).ready(function () {
     var store = getObjectStore(DB_STORE_NAME, "readwrite");
     var req = store.clear();
     req.onsuccess = function (evt) {
-      displayActionSuccess("Store cleared");
+      displayActionSuccess("Agenda Borrada con éxito");
       displayPubList(store);
     };
     req.onerror = function (evt) {
@@ -190,7 +190,7 @@ $(document).ready(function () {
     var req = store.index("tel");
     req.get(tel).onsuccess = function (evt) {
       if (typeof evt.target.result == "undefined") {
-        displayActionFailure("No matching record found");
+        displayActionFailure("No se ha encontrado ningún registro coincidente");
         return;
       }
       deletePublication(evt.target.result.id, store);
@@ -206,7 +206,7 @@ $(document).ready(function () {
     var req = store.index("nombre");
     req.get(nombre).onsuccess = function (evt) {
       if (typeof evt.target.result == "undefined") {
-        displayActionFailure("No matching record found");
+        displayActionFailure("No se ha encontrado ningún registro coincidente");
         return;
       }
       deletePublication(evt.target.result.id, store);
@@ -235,7 +235,7 @@ $(document).ready(function () {
       var record = evt.target.result;
       console.log("record:", record);
       if (typeof record == "undefined") {
-        displayActionFailure("No matching record found");
+        displayActionFailure("No se ha encontrado ningún registro");
         return;
       }
       // Warning: The exact same key used for creation needs to be passed for
@@ -247,7 +247,7 @@ $(document).ready(function () {
         console.log("evt.target:", evt.target);
         console.log("evt.target.result:", evt.target.result);
         console.log("delete successful");
-        displayActionSuccess("Deletion successful");
+        displayActionSuccess("Contacto eliminado con éxito");
         displayPubList(store);
       };
       req.onerror = function (evt) {
@@ -260,11 +260,11 @@ $(document).ready(function () {
   }
 
   function displayActionSuccess(msg) {
-    msg = typeof msg != "undefined" ? "Success: " + msg : "Success";
+    msg = typeof msg != "undefined" ? "Éxito: " + msg : "Exito";
     $("#msg").html('<span class="action-success">' + msg + "</span>");
   }
   function displayActionFailure(msg) {
-    msg = typeof msg != "undefined" ? "Failure: " + msg : "Failure";
+    msg = typeof msg != "undefined" ? "Fallo: " + msg : "Fallo";
     $("#msg").html('<span class="action-failure">' + msg + "</span>");
   }
   function resetActionStatus() {
@@ -285,7 +285,7 @@ $(document).ready(function () {
 
       var updateReq = store.put(data)
       updateReq.onsuccess = () => {
-        displayActionSuccess("Contact updated successfully")
+        displayActionSuccess("Contacto actualizado con éxito")
         displayPubList(store)
       }
       updateReq.onerror = function () {
@@ -374,14 +374,14 @@ $(document).ready(function () {
         // Validación de teléfono con regex
         var telRegex = /^[0-9]{9}$/;
         if (!telRegex.test(tel)) {
-          displayActionFailure("Invalid phone number");
+          displayActionFailure("Número de teléfono inválido");
           return;
         }
 
         // Validación de email con regex
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (email !== "" && !emailRegex.test(email)) {
-          displayActionFailure("Invalid email address");
+          displayActionFailure("Email inválido");
           return;
         }
         if (email === "") {
