@@ -1,20 +1,14 @@
 $(document).ready(function () {
   const DB_NAME = "contactos";
-  const DB_VERSION = 1; // Use a long long for this value (don't use a float)
+  const DB_VERSION = 1;
   const DB_STORE_NAME = "contactos";
 
   var db;
-
-  // Used to keep track of which view is displayed to avoid uselessly reloading it
-  var current_view_pub_key;
 
   function openDb() {
     console.log("openDb ...");
     var req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onsuccess = function (evt) {
-      // Better use "this" than "req" to get the result to avoid problems with
-      // garbage collection.
-      // db = req.result;
       db = this.result;
       console.log("openDb DONE");
       displayPubList();
@@ -80,15 +74,11 @@ $(document).ready(function () {
     pub_msg.empty();
     var pub_list = $("#pub-list");
     pub_list.empty();
-    // Resetting the iframe so that it doesn't display previous content
-    //newViewerFrame();
 
     var req;
     req = store.count();
-    // Requests are executed in the order in which they were made against the
-    // transaction, and their results are returned in the same order.
-    // Thus the count text below will be displayed before the actual pub list
-    // (not that it is algorithmically important in this case).
+
+    // Se obtiene el número de contactos en la agenda
     req.onsuccess = function (evt) {
       pub_msg.append(
         "<strong>Tienes " + evt.target.result + "</strong>" + " contactos en total"
@@ -111,6 +101,7 @@ $(document).ready(function () {
         req.onsuccess = function (evt) {
           var value = evt.target.result;
 
+          // Crear una lista con los datos de todos los contactos
           var list_item = $(
             `<li>
               <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -138,10 +129,8 @@ $(document).ready(function () {
           pub_list.append(list_item);
         };
 
-        // Move on to the next object in store
         cursor.continue();
 
-        // This counter serves only to create distinct ids
         i++;
       } else {
         console.log("No more entries");
@@ -150,6 +139,8 @@ $(document).ready(function () {
   }
 
   /**
+   * Añade un contacto a la agenda
+   * 
    * @param {string} tel
    * @param {string} nombre
    * @param {string} email
@@ -166,7 +157,7 @@ $(document).ready(function () {
     } catch (e) {
       if (e.name == "DataCloneError")
         displayActionFailure(
-          "This engine doesn't know how to clone a Blob, use Firefox"
+          "Este motor no sabe como clonar un objeto, por favor no incluyas campos no estándar en el objeto"
         );
       throw e;
     }
@@ -182,6 +173,8 @@ $(document).ready(function () {
   }
 
   /**
+   * Borra un contacto de la agenda a partir de su teléfono
+   * 
    * @param {string} tel
    */
   function deletePublicationFromTel(tel) {
@@ -200,6 +193,12 @@ $(document).ready(function () {
     };
   }
 
+  /**
+   * Borra un contacto de la agenda a partir de su nombre
+   * 
+   * @param {string} nombre
+   * 
+   */
   function deletePublicationFromNom(nombre) {
     console.log("deletePublication:", arguments);
     var store = getObjectStore(DB_STORE_NAME, "readwrite");
@@ -217,6 +216,8 @@ $(document).ready(function () {
   }
 
   /**
+   * Borra un contacto de la agenda
+   * 
    * @param {number} key
    * @param {IDBObjectStore=} store
    */
@@ -226,10 +227,6 @@ $(document).ready(function () {
     if (typeof store == "undefined")
       store = getObjectStore(DB_STORE_NAME, "readwrite");
 
-    // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
-    // the result of the Object Store Deletion Operation algorithm is
-    // undefined, so it's not possible to know if some records were actually
-    // deleted by looking at the request result.
     var req = store.get(key);
     req.onsuccess = function (evt) {
       var record = evt.target.result;
@@ -238,9 +235,7 @@ $(document).ready(function () {
         displayActionFailure("No se ha encontrado ningún registro");
         return;
       }
-      // Warning: The exact same key used for creation needs to be passed for
-      // the deletion. If the key was a Number for creation, then it needs to
-      // be a Number for deletion.
+
       req = store.delete(key);
       req.onsuccess = function (evt) {
         console.log("evt:", evt);
@@ -259,20 +254,42 @@ $(document).ready(function () {
     };
   }
 
+  /**
+   * Muestra un mensaje de éxito en la interfaz
+   * 
+   * @param {String} msg 
+   */
   function displayActionSuccess(msg) {
     msg = typeof msg != "undefined" ? "Éxito: " + msg : "Exito";
     $("#msg").html('<span class="action-success">' + msg + "</span>");
   }
+
+  /**
+   * Muestra un mensaje de fallo en la interfaz
+   * 
+   * @param {String} msg
+   */
   function displayActionFailure(msg) {
     msg = typeof msg != "undefined" ? "Fallo: " + msg : "Fallo";
     $("#msg").html('<span class="action-failure">' + msg + "</span>");
   }
+
+
   function resetActionStatus() {
     console.log("resetActionStatus ...");
     $("#msg").empty();
     console.log("resetActionStatus DONE");
   }
 
+  /**
+   * Actualiza un contacto de la agenda
+   * 
+   * @param {Number} id 
+   * @param {String} nombre 
+   * @param {Number} tel 
+   * @param {String} email 
+   * @param {String} empresa 
+   */
   function updateContact(id, nombre, tel, email, empresa) {
     var store = getObjectStore(DB_STORE_NAME, "readwrite")
     var req = store.get(id)
@@ -295,7 +312,12 @@ $(document).ready(function () {
     }
   }
 
-  function searchContacts(nameQuery, companyQuery) {
+  /**
+   * 
+   * @param {string} nameQuery 
+   * @param {string} companyQuery 
+   */
+  function searchContacts(nombre, empresa) {
     var store = getObjectStore(DB_STORE_NAME, "readonly")
     var index = store.index("nombre")
     var request = index.openCursor()
@@ -307,8 +329,8 @@ $(document).ready(function () {
       var cursor = event.target.result
       if (cursor) {
         var contact = cursor.value
-        var nameMatch = contact.nombre.includes(nameQuery)
-        var companyMatch = contact.empresa.includes(companyQuery)
+        var nameMatch = contact.nombre.includes(nombre)
+        var companyMatch = contact.empresa.includes(empresa)
 
         if (nameMatch && companyMatch) {
           var list_item = $(
@@ -341,6 +363,7 @@ $(document).ready(function () {
       resetActionStatus();
     });
 
+    // Botón de agregar contacto
     $("#add-button").click(function () {
       console.log("add ...");
       var nombre = $("#pub-nombre").val();
@@ -348,6 +371,7 @@ $(document).ready(function () {
       var email = $("#pub-email").val();
       var empresa = $("#pub-empresa").val();
 
+      // Validación de campos obligatorios
       if (!nombre && !tel) {
         displayActionFailure("Los campos Nombre y Teléfono son obligatorios");
         $(".note").prop("hidden", false);
@@ -366,11 +390,14 @@ $(document).ready(function () {
         return;
       }
 
+      // Si el boton de agregar está en modo editar se actualiza el 
+      // contacto en vez de agregar uno nuevo
       var editId = $(this).data("edit-id");
       if (editId) {
         updateContact(editId, nombre, tel, email, empresa);
         $(this).text("Agregar").removeData("edit-id");
       } else {
+
         // Validación de teléfono con regex
         var telRegex = /^[0-9]{9}$/;
         if (!telRegex.test(tel)) {
@@ -387,16 +414,21 @@ $(document).ready(function () {
         if (email === "") {
           email = null;
         }
+        if (empresa === "") {
+          empresa = null;
+        }
 
         addPublication(tel, nombre, email, empresa);
       }
     });
 
+    // Botón de borrar contacto
     $("#delete-button").click(function (evt) {
       console.log("delete ...");
       var tel = $("#pub-tel-to-delete").val();
       var nombre = $("#pub-nombre-to-delete").val();
 
+      // Borrar contacto por nombre o teléfono
       if (nombre !== "") {
         deletePublicationFromNom(nombre);
       } else if (tel !== "") {
@@ -408,11 +440,7 @@ $(document).ready(function () {
       clearObjectStore();
     });
 
-    var search_button = $("#search-list-button");
-    search_button.click(function (evt) {
-      displayPubList();
-    });
-
+    // Botón de editar contacto
     $(document).on("click", ".btn-edit-contact", function () {
       var id = $(this).data("id");
       var store = getObjectStore(DB_STORE_NAME, "readonly");
@@ -428,6 +456,7 @@ $(document).ready(function () {
 
           // Cambiar el texto del botón de agregar a actualizar
           $("#add-button").text("Actualizar").data("edit-id", id);
+
           // Cambiar el texto del botón de editar a editando
           $(".btn-edit-contact[data-id='" + id + "']").text("Editando").data("edit-id", evt.target.result.id);
         }
@@ -437,11 +466,13 @@ $(document).ready(function () {
       };
     });
 
+    // Botón de borrar contacto
     $(document).on("click", ".btn-destroy-contact", function () {
       var id = $(this).data("id");
       deletePublication(id);
     });
 
+    // Lógica de búsqueda de contactos
     $("#pub-nombre-to-search, #pub-empresa-to-search").on("input", () => {
       var nameQuery = $("#pub-nombre-to-search").val()
       var companyQuery = $("#pub-empresa-to-search").val()
@@ -451,5 +482,4 @@ $(document).ready(function () {
 
   openDb();
   addEventListeners();
-  // Immediately-Invoked Function Expression (IIFE)
 });
