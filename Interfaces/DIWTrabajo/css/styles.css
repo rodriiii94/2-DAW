@@ -1,0 +1,143 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #f4a460;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 10px;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .producto {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .producto img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  #mapa {
+    width: 100%;
+    height: 300px;
+    background-color: #eee;
+  }
+  
+  /* Animación del proceso de elaboración del pan */
+  .pan-animacion {
+    width: 300px;
+    height: 200px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .harina,
+  .agua,
+  .masa,
+  .horno,
+  .pan {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+  }
+  
+  .harina {
+    background-color: #f5deb3;
+    animation-name: mezclar;
+    left: 0;
+  }
+  
+  .agua {
+    background-color: #87cefa;
+    animation-name: mezclar;
+    left: 60px;
+  }
+  
+  .masa {
+    background-color: #deb887;
+    animation-name: amasar;
+    left: 120px;
+  }
+  
+  .horno {
+    background-color: #cd5c5c;
+    width: 100px;
+    height: 100px;
+    border-radius: 0;
+    bottom: 0;
+    right: 0;
+  }
+  
+  .pan {
+    background-color: #d2691e;
+    animation-name: hornear;
+    right: 25px;
+    bottom: 25px;
+  }
+  
+  @keyframes mezclar {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(50px);
+    }
+  }
+  
+  @keyframes amasar {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+  }
+  
+  @keyframes hornear {
+    0% {
+      transform: scale(0.5);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  

@@ -429,7 +429,7 @@ $(document).ready(function () {
           // Cambiar el texto del botón de agregar a actualizar
           $("#add-button").text("Actualizar").data("edit-id", id);
           // Cambiar el texto del botón de editar a editando
-          $("#edit-button").text("Editando").data("edit-id", id);
+          $(".btn-edit-contact[data-id='" + id + "']").text("Editando").data("edit-id", evt.target.result.id);
         }
       };
       req.onerror = function (evt) {
