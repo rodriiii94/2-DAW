@@ -420,14 +420,15 @@ $(document).ready(function () {
       req.onsuccess = function (evt) {
         var contact = evt.target.result;
         if (contact) {
-          // Populate the form with the contact details
+          // Rellenar el formulario con los datos del contacto
           $("#pub-nombre").val(contact.nombre);
           $("#pub-tel").val(contact.tel);
           $("#pub-email").val(contact.email);
           $("#pub-empresa").val(contact.empresa);
 
-          // Change the "Add" button to "Update"
+          // Cambiar el texto del botón de agregar a actualizar
           $("#add-button").text("Actualizar").data("edit-id", id);
+          // Cambiar el texto del botón de editar a editando
           $("#edit-button").text("Editando").data("edit-id", id);
         }
       };
