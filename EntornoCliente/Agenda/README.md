@@ -33,7 +33,9 @@ Una vez cargada la aplicación, podrás empezar a utilizarla de inmediato. Para 
 
 Para añadir un nuevo contacto a la agenda, sigue estos pasos:
 
-![alt text](img/image.png)
+<p align="center">
+  <img src="img/image.png" alt="alt text" width="200">
+</p>
 
 1. Haz clic en el botón `Agregar` para añadir el contacto a la agenda.
 2. El contacto se añadirá a la lista y podrás verlo en la interfaz principal.
@@ -50,7 +52,9 @@ Se pueden eliminar contactos de la agenda de 2 maneras:
 1. Escribe el nombre o el telfono del contacto que desees eliminar en el campo de búsqueda.
 2. Haz clic en el botón `Eliminar`.
 
-![alt text](img/image3.png)
+<p align="center">
+  <img src="img/image3.png" alt="alt text" width="200">
+</p>
 
 #### Buscar un contacto
 
@@ -65,7 +69,11 @@ Para buscar un contacto en la agenda, sigue estos pasos:
 Para editar un contacto existente en la agenda, sigue estos pasos:
 
 1. Haz clic en el botón `Editar` junto al contacto que desees modificar.
-![alt text](img/image2.png)
+
+<p align="center">
+  <img src="img/image2.png" alt="alt text" width="200">
+</p>
+
 2. Se pasarán los datos del contacto al formulario, donde podrás modificarlos.
 3. Modifica los campos que desees cambiar y haz clic en el botón `Actualizar`.
 4. Los cambios se guardarán automáticamente y podrás verlos reflejados en la lista de contactos.
