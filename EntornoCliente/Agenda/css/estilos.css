@@ -1,8 +1,8 @@
 :root {
   --primary-color: #267bbd;
-  --secondary-color: #9EA3B0;
+  --secondary-color: #9ea3b0;
   --third-color: #111c42;
-  --background-color: #0D1F2D;
+  --background-color: #0d1f2d;
   --surface-color: #16213e;
   --text-color: #e2e2e2;
   --border-radius: 8px;
@@ -36,7 +36,7 @@ body {
 header {
   text-align: center;
   padding: 30px 0;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -154,6 +154,28 @@ button {
   transform: translateY(-2px);
 }
 
+.btn-destroy-contact {
+  background-color: #e74c3c;
+  color: white;
+  float: right;
+}
+
+.btn-destroy-contact:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+}
+
+.btn-edit-contact {
+  background-color: #3498db;
+  color: white;
+  margin-right: 5px;
+}
+
+.btn-edit-contact:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
 .results-section {
   grid-column: 1 / -1;
   padding: 20px;
@@ -227,4 +249,6 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+
 

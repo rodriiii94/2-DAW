@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   const DB_NAME = "contactos";
   const DB_VERSION = 1; // Use a long long for this value (don't use a float)
   const DB_STORE_NAME = "contactos";
@@ -10,7 +9,7 @@ $(document).ready(function () {
   var current_view_pub_key;
 
   function openDb() {
-    console.log("DBAbierta ...");
+    console.log("openDb ...");
     var req = indexedDB.open(DB_NAME, DB_VERSION);
     req.onsuccess = function (evt) {
       // Better use "this" than "req" to get the result to avoid problems with
@@ -92,9 +91,7 @@ $(document).ready(function () {
     // (not that it is algorithmically important in this case).
     req.onsuccess = function (evt) {
       pub_msg.append(
-        "<p>There are <strong>" +
-          evt.target.result +
-          "</strong> record(s) in the object store.</p>"
+        "<strong>Tienes " + evt.target.result + "</strong>" + " contactos en total"
       );
     };
     req.onerror = function (evt) {
@@ -108,19 +105,34 @@ $(document).ready(function () {
       var cursor = evt.target.result;
 
       // If the cursor is pointing at something, ask for the data
-      //TODO: reescribir la lista de contactos para que muestre los datos que yo quiero(nombre, telefono, empresa y email)
       if (cursor) {
         console.log("displayPubList cursor:", cursor);
         req = store.get(cursor.key);
         req.onsuccess = function (evt) {
           var value = evt.target.result;
-          
+
           var list_item = $(
             `<li>
-              <strong>Nombre:</strong> ${value.nombre}<br>
-              <strong>Teléfono:</strong> ${value.tel}<br>
-              <strong>Email:</strong> ${value.email ? value.email : "No disponible"}<br>
-              <strong>Empresa:</strong> ${value.empresa ? value.empresa : "No disponible"}
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong>Nombre:</strong> ${value.nombre}<br>
+                  <strong>Teléfono:</strong> ${value.tel}<br>
+                  <strong>Email:</strong> ${
+                    value.email ? value.email : "No disponible"
+                  }<br>
+                  <strong>Empresa:</strong> ${
+                    value.empresa ? value.empresa : "No disponible"
+                  }
+                </div>
+                <div>
+                  <button type="button" id="edit-button" class="btn-edit-contact" data-id="${
+                    value.id
+                  }">Editar</button>
+                  <button type="button" class="btn-destroy-contact" data-id="${
+                    value.id
+                  }">Eliminar</button>
+                </div>
+              </div>
             </li>`
           );
           pub_list.append(list_item);
@@ -204,48 +216,48 @@ $(document).ready(function () {
     };
   }
 
-/**
-     * @param {number} key
-     * @param {IDBObjectStore=} store
-     */
-function deletePublication(key, store) {
-  console.log("deletePublication:", arguments);
+  /**
+   * @param {number} key
+   * @param {IDBObjectStore=} store
+   */
+  function deletePublication(key, store) {
+    console.log("deletePublication:", arguments);
 
-  if (typeof store == "undefined")
-    store = getObjectStore(DB_STORE_NAME, "readwrite");
+    if (typeof store == "undefined")
+      store = getObjectStore(DB_STORE_NAME, "readwrite");
 
-  // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
-  // the result of the Object Store Deletion Operation algorithm is
-  // undefined, so it's not possible to know if some records were actually
-  // deleted by looking at the request result.
-  var req = store.get(key);
-  req.onsuccess = function (evt) {
-    var record = evt.target.result;
-    console.log("record:", record);
-    if (typeof record == "undefined") {
-      displayActionFailure("No matching record found");
-      return;
-    }
-    // Warning: The exact same key used for creation needs to be passed for
-    // the deletion. If the key was a Number for creation, then it needs to
-    // be a Number for deletion.
-    req = store.delete(key);
+    // As per spec http://www.w3.org/TR/IndexedDB/#object-store-deletion-operation
+    // the result of the Object Store Deletion Operation algorithm is
+    // undefined, so it's not possible to know if some records were actually
+    // deleted by looking at the request result.
+    var req = store.get(key);
     req.onsuccess = function (evt) {
-      console.log("evt:", evt);
-      console.log("evt.target:", evt.target);
-      console.log("evt.target.result:", evt.target.result);
-      console.log("delete successful");
-      displayActionSuccess("Deletion successful");
-      displayPubList(store);
+      var record = evt.target.result;
+      console.log("record:", record);
+      if (typeof record == "undefined") {
+        displayActionFailure("No matching record found");
+        return;
+      }
+      // Warning: The exact same key used for creation needs to be passed for
+      // the deletion. If the key was a Number for creation, then it needs to
+      // be a Number for deletion.
+      req = store.delete(key);
+      req.onsuccess = function (evt) {
+        console.log("evt:", evt);
+        console.log("evt.target:", evt.target);
+        console.log("evt.target.result:", evt.target.result);
+        console.log("delete successful");
+        displayActionSuccess("Deletion successful");
+        displayPubList(store);
+      };
+      req.onerror = function (evt) {
+        console.error("deletePublication:", evt.target.errorCode);
+      };
     };
     req.onerror = function (evt) {
       console.error("deletePublication:", evt.target.errorCode);
     };
-  };
-  req.onerror = function (evt) {
-    console.error("deletePublication:", evt.target.errorCode);
-  };
-}
+  }
 
   function displayActionSuccess(msg) {
     msg = typeof msg != "undefined" ? "Success: " + msg : "Success";
@@ -261,6 +273,67 @@ function deletePublication(key, store) {
     console.log("resetActionStatus DONE");
   }
 
+  function updateContact(id, nombre, tel, email, empresa) {
+    var store = getObjectStore(DB_STORE_NAME, "readwrite")
+    var req = store.get(id)
+    req.onsuccess = (evt) => {
+      var data = evt.target.result
+      data.nombre = nombre
+      data.tel = tel
+      data.email = email
+      data.empresa = empresa
+
+      var updateReq = store.put(data)
+      updateReq.onsuccess = () => {
+        displayActionSuccess("Contact updated successfully")
+        displayPubList(store)
+      }
+      updateReq.onerror = function () {
+        console.error("updateContact error", this.error)
+        displayActionFailure(this.error)
+      }
+    }
+  }
+
+  function searchContacts(nameQuery, companyQuery) {
+    var store = getObjectStore(DB_STORE_NAME, "readonly")
+    var index = store.index("nombre")
+    var request = index.openCursor()
+
+    var pub_list = $("#pub-list")
+    pub_list.empty()
+
+    request.onsuccess = (event) => {
+      var cursor = event.target.result
+      if (cursor) {
+        var contact = cursor.value
+        var nameMatch = contact.nombre.includes(nameQuery)
+        var companyMatch = contact.empresa.includes(companyQuery)
+
+        if (nameMatch && companyMatch) {
+          var list_item = $(
+            `<li>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <strong>Nombre:</strong> ${contact.nombre}<br>
+                  <strong>Teléfono:</strong> ${contact.tel}<br>
+                  <strong>Email:</strong> ${contact.email ? contact.email : "No disponible"}<br>
+                  <strong>Empresa:</strong> ${contact.empresa ? contact.empresa : "No disponible"}
+                </div>
+                <div>
+                  <button type="button" class="btn-edit-contact" data-id="${contact.id}">Editar</button>
+                  <button type="button" class="btn-destroy-contact" data-id="${contact.id}">Eliminar</button>
+                </div>
+              </div>
+            </li>`,
+          )
+          pub_list.append(list_item)
+        }
+        cursor.continue()
+      }
+    }
+  }
+
   function addEventListeners() {
     console.log("addEventListeners");
 
@@ -268,55 +341,55 @@ function deletePublication(key, store) {
       resetActionStatus();
     });
 
-    $("#add-button").click(function (evt) {
+    $("#add-button").click(function () {
       console.log("add ...");
       var nombre = $("#pub-nombre").val();
       var tel = $("#pub-tel").val();
       var email = $("#pub-email").val();
       var empresa = $("#pub-empresa").val();
 
-      // if (!nombre || !tel) {
-      //   displayActionFailure("Required field(s) missing");
-      //   $(".note").prop("hidden", false);
-      //   $("#pub-nombre").css("border-color", "red");
-      //   $("#pub-tel").css("border-color", "red");
-      //   return;
-      // }
-      
       if (!nombre && !tel) {
         displayActionFailure("Los campos Nombre y Teléfono son obligatorios");
         $(".note").prop("hidden", false);
         $("#pub-nombre").css("border-color", "red");
         $("#pub-tel").css("border-color", "red");
-      }else if (!nombre) {
-        displayActionFailure("El campo Nombre es obligtaorio");
+        return;
+      } else if (!nombre) {
+        displayActionFailure("El campo Nombre es obligatorio");
         $(".note").prop("hidden", false);
         $("#pub-nombre").css("border-color", "red");
+        return;
       } else if (!tel) {
-        displayActionFailure("El campo Teléfono es obligtaorio");
+        displayActionFailure("El campo Teléfono es obligatorio");
         $(".note").prop("hidden", false);
         $("#pub-tel").css("border-color", "red");
-      }
-
-      // Validación de teléfono con regex
-      var telRegex = /^[0-9]{9}$/;
-      if (!telRegex.test(tel)) {
-        displayActionFailure("Invalid phone number");
         return;
       }
 
-      // Validación de email con regex
-      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (email !== "" && !emailRegex.test(email)) {
-        displayActionFailure("Invalid email address");
-        return;
-      }
-      if (email === "") {
-        email = null;
-      }
+      var editId = $(this).data("edit-id");
+      if (editId) {
+        updateContact(editId, nombre, tel, email, empresa);
+        $(this).text("Agregar").removeData("edit-id");
+      } else {
+        // Validación de teléfono con regex
+        var telRegex = /^[0-9]{9}$/;
+        if (!telRegex.test(tel)) {
+          displayActionFailure("Invalid phone number");
+          return;
+        }
 
-      addPublication(tel, nombre, email, empresa);
-      
+        // Validación de email con regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email !== "" && !emailRegex.test(email)) {
+          displayActionFailure("Invalid email address");
+          return;
+        }
+        if (email === "") {
+          email = null;
+        }
+
+        addPublication(tel, nombre, email, empresa);
+      }
     });
 
     $("#delete-button").click(function (evt) {
@@ -338,6 +411,39 @@ function deletePublication(key, store) {
     var search_button = $("#search-list-button");
     search_button.click(function (evt) {
       displayPubList();
+    });
+
+    $(document).on("click", ".btn-edit-contact", function () {
+      var id = $(this).data("id");
+      var store = getObjectStore(DB_STORE_NAME, "readonly");
+      var req = store.get(id);
+      req.onsuccess = function (evt) {
+        var contact = evt.target.result;
+        if (contact) {
+          // Populate the form with the contact details
+          $("#pub-nombre").val(contact.nombre);
+          $("#pub-tel").val(contact.tel);
+          $("#pub-email").val(contact.email);
+          $("#pub-empresa").val(contact.empresa);
+
+          // Change the "Add" button to "Update"
+          $("#add-button").text("Actualizar").data("edit-id", id);
+        }
+      };
+      req.onerror = function (evt) {
+        console.error("editContact error", evt.target.errorCode);
+      };
+    });
+
+    $(document).on("click", ".btn-destroy-contact", function () {
+      var id = $(this).data("id");
+      deletePublication(id);
+    });
+
+    $("#pub-nombre-to-search, #pub-empresa-to-search").on("input", () => {
+      var nameQuery = $("#pub-nombre-to-search").val()
+      var companyQuery = $("#pub-empresa-to-search").val()
+      searchContacts(nameQuery, companyQuery)
     });
   }
 
