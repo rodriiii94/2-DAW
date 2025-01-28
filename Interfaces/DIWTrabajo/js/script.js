@@ -1,82 +1,74 @@
-// Datos de los productos (simulados)
-const productos = {
-    panaderia: [
-      {
-        nombre: "Pan de trigo",
-        ingredientes: "Harina de trigo, agua, sal, levadura",
-        elaboracion: "Amasado tradicional y horneado en horno de piedra",
-        imagen: "pan_trigo.jpg",
-      },
-      // ... más productos hasta 12
-    ],
-    pasteleria: [
-      {
-        nombre: "Croissant",
-        ingredientes: "Harina, mantequilla, azúcar, levadura",
-        elaboracion: "Laminado manual y horneado",
-        imagen: "croissant.jpg",
-      },
-      // ... más productos hasta 8
-    ],
-    empanadas: [
-      {
-        nombre: "Empanada de atún",
-        ingredientes: "Masa de empanada, atún, cebolla, pimiento",
-        elaboracion: "Relleno casero y horneado",
-        imagen: "empanada_atun.jpg",
-      },
-      // ... más productos hasta 4
-    ],
-  }
-  
-  // Función para cargar los productos
-  function cargarProductos(seccion) {
-    const contenedor = document.getElementById(seccion)
-    contenedor.innerHTML = `<h2>${seccion.charAt(0).toUpperCase() + seccion.slice(1)}</h2>`
-  
-    productos[seccion].forEach((producto) => {
-      const productoElement = document.createElement("div")
-      productoElement.className = "producto"
-      productoElement.innerHTML = `
-              <h3>${producto.nombre}</h3>
-              <img src="${producto.imagen}" alt="${producto.nombre}">
-              <p><strong>Ingredientes:</strong> ${producto.ingredientes}</p>
-              <p><strong>Elaboración:</strong> ${producto.elaboracion}</p>
-          `
-      contenedor.appendChild(productoElement)
-    })
-  }
-  
-  // Cargar todos los productos al inicio
-  document.addEventListener("DOMContentLoaded", () => {
-    cargarProductos("panaderia")
-    cargarProductos("pasteleria")
-    cargarProductos("empanadas")
+const translations = {
+  es: {
+    "nav.home": "Inicio",
+    "nav.bakery": "Panadería",
+    "nav.pastry": "Pastelería - Bollería",
+    "nav.empanadas": "Empanadas",
+    "welcome.title": "Bienvenidos a Migas Amigas",
+    "welcome.description": "Descubre el sabor auténtico de nuestros productos artesanales.",
+    "animation.title": "Cómo hacemos nuestro pan",
+    "animation.stage1": "1. Mezclamos los ingredientes",
+    "animation.stage2": "2. Amasamos la mezcla",
+    "animation.stage3": "3. Dejamos fermentar la masa",
+    "animation.stage4": "4. Horneamos el pan",
+    "contact.title": "Contacto",
+    "contact.address": "Dirección: Calle del Pan, 123, Ciudad",
+    "contact.phone": "Teléfono: +34 123 456 789",
+  },
+  pt: {
+    "nav.home": "Início",
+    "nav.bakery": "Padaria",
+    "nav.pastry": "Pastelaria",
+    "nav.empanadas": "Empanadas",
+    "welcome.title": "Bem-vindos à Migas Amigas",
+    "welcome.description": "Descubra o sabor autêntico dos nossos produtos artesanais.",
+    "animation.title": "Como fazemos nosso pão",
+    "animation.stage1": "1. Misturamos os ingredientes",
+    "animation.stage2": "2. Amassamos a mistura",
+    "animation.stage3": "3. Deixamos a massa fermentar",
+    "animation.stage4": "4. Assamos o pão",
+    "contact.title": "Contato",
+    "contact.address": "Endereço: Rua do Pão, 123, Cidade",
+    "contact.phone": "Telefone: +34 123 456 789",
+  },
+}
+
+function changeLanguage(lang) {
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.getAttribute("data-i18n")
+    element.textContent = translations[lang][key]
   })
-  
-  // Cambio de idioma (simulado)
-  const languageToggle = document.getElementById("languageToggle")
-  let isSpanish = true
-  
-  languageToggle.addEventListener("click", () => {
-    isSpanish = !isSpanish
-    if (isSpanish) {
-      languageToggle.textContent = "Cambiar a Português"
-      // Aquí se cambiarían los textos a español
-    } else {
-      languageToggle.textContent = "Cambiar para Espanhol"
-      // Aquí se cambiarían los textos a portugués
+  document.documentElement.lang = lang
+}
+
+document.getElementById("languageSelector").addEventListener("change", (event) => {
+  changeLanguage(event.target.value)
+})
+
+// Animación del proceso de hacer pan
+function animateBreadMaking() {
+  const stages = document.querySelectorAll(".bread-stage")
+  let currentStage = 0
+
+  function showNextStage() {
+    if (currentStage > 0) {
+      stages[currentStage - 1].classList.remove("active")
     }
-  })
-  
-  // Navegación suave
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      document.querySelector(this.getAttribute("href")).scrollIntoView({
-        behavior: "smooth",
-      })
-    })
-  })
-  
-  
+    if (currentStage < stages.length) {
+      stages[currentStage].classList.add("active")
+      currentStage++
+      setTimeout(showNextStage, 3000)
+    } else {
+      currentStage = 0
+      setTimeout(animateBreadMaking, 1000)
+    }
+  }
+
+  showNextStage()
+}
+
+// Iniciar la animación cuando la página se carga
+window.addEventListener("load", animateBreadMaking)
+
+// Inicializar el idioma en español
+changeLanguage("es")  

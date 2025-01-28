@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Migas Amigas - Empanadas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Migas Amigas</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="panaderia.html" data-i18n="nav.bakery">Panadería</a></li>
+                    <li><a href="pasteleria-bolleria.html" data-i18n="nav.pastry">Pastelería - Bollería</a></li>
+                    <li><a href="empanadas.html" class="active" data-i18n="nav.empanadas">Empanadas</a></li>
+                </ul>
+            </nav>
+            <select id="languageSelector">
+                <option value="es">Español</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section id="empanadas-products">
+            <h2 data-i18n="empanadas.title">Nuestras Empanadas</h2>
+            <div id="products" class="products-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Migas Amigas - Panadería Artesanal</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>
+
+

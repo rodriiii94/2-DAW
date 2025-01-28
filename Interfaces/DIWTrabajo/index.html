@@ -3,63 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Migas Amigas</title>
+    <title>Migas Amigas - Panadería Artesanal</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/new-animation.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <h1>Migas Amigas</h1>
-        <nav>
-            <ul>
-                <li><a href="#panaderia" class="nav-link" data-section="panaderia">Panadería</a></li>
-                <li><a href="#pasteleria" class="nav-link" data-section="pasteleria">Pastelería - Bollería</a></li>
-                <li><a href="#empanadas" class="nav-link" data-section="empanadas">Empanadas</a></li>
-            </ul>
-        </nav>
-        <button id="languageToggle">Cambiar a Português</button>
+        <div class="header-content">
+            <h1>Migas Amigas</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active" data-i18n="nav.home">Inicio</a></li>
+                    <li><a href="panaderia.html" data-i18n="nav.bakery">Panadería</a></li>
+                    <li><a href="pasteleria-bolleria.html" data-i18n="nav.pastry">Pastelería - Bollería</a></li>
+                    <li><a href="empanadas.html" data-i18n="nav.empanadas">Empanadas</a></li>
+                </ul>
+            </nav>
+            <select id="languageSelector">
+                <option value="es">Español</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
     </header>
 
     <main>
-        <section id="animacion">
-            <div class="pan-animacion">
-                <div class="harina"></div>
-                <div class="agua"></div>
-                <div class="masa"></div>
-                <div class="horno"></div>
-                <div class="pan"></div>
+        <section id="welcome">
+            <h2 data-i18n="welcome.title">Bienvenidos a Migas Amigas</h2>
+            <p data-i18n="welcome.description">Descubre el sabor auténtico de nuestros productos artesanales.</p>
+        </section>
+
+        <section id="bread-process">
+            <h2 data-i18n="animation.title">El Arte de Hacer Pan</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-step="1">
+                    <div class="timeline-content">
+                        <h3 data-i18n="animation.stage1">Selección de Ingredientes</h3>
+                        <p data-i18n="animation.stage1-desc">Escogemos los mejores ingredientes para nuestro pan.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="2">
+                    <div class="timeline-content">
+                        <h3 data-i18n="animation.stage2">Mezcla y Amasado</h3>
+                        <p data-i18n="animation.stage2-desc">Mezclamos los ingredientes y amasamos con cuidado.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="3">
+                    <div class="timeline-content">
+                        <h3 data-i18n="animation.stage3">Fermentación</h3>
+                        <p data-i18n="animation.stage3-desc">Dejamos que la masa fermente y desarrolle sabores.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-step="4">
+                    <div class="timeline-content">
+                        <h3 data-i18n="animation.stage4">Horneado</h3>
+                        <p data-i18n="animation.stage4-desc">Horneamos el pan hasta obtener una corteza dorada.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="stage-details" class="stage-details">
+                <img src="/placeholder.svg" alt="Etapa del proceso de elaboración del pan" id="stage-image">
+                <p id="stage-description"></p>
             </div>
         </section>
 
-        <section id="panaderia" class="productos">
-            <h2>Panadería</h2>
-            <!-- Los productos se cargarán dinámicamente aquí -->
-        </section>
-
-        <section id="pasteleria" class="productos">
-            <h2>Pastelería - Bollería</h2>
-            <!-- Los productos se cargarán dinámicamente aquí -->
-        </section>
-
-        <section id="empanadas" class="productos">
-            <h2>Empanadas</h2>
-            <!-- Los productos se cargarán dinámicamente aquí -->
-        </section>
-
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>Dirección: Calle del Pan, 123, Ciudad Fronteriza</p>
-            <p>Teléfono: +34 123 456 789</p>
-            <div id="mapa">
-                <!-- Aquí iría un mapa o croquis de la ubicación -->
+        <section id="contact">
+            <h2 data-i18n="contact.title">Contacto</h2>
+            <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="contact.address">Dirección: Calle del Pan, 123, Ciudad</span></p>
+            <p><i class="fas fa-phone"></i> <span data-i18n="contact.phone">Teléfono: +34 123 456 789</span></p>
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4308.000151630045!2d-3.7691191068527754!3d40.22649672637735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd41f5320b893765%3A0xfd153cb3a00bc9bc!2sIES%20Enrique%20Tierno%20Galv%C3%A1n!5e0!3m2!1ses!2ses!4v1738025757357!5m2!1ses!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2023 Migas Amigas. Todos los derechos reservados.</p>
+        <p>&copy; 2025 Migas Amigas - Panadería Artesanal</p>
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/new-animation.js"></script>
 </body>
 </html>
-
