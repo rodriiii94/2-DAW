@@ -495,3 +495,70 @@ La propiedad CSS float se utiliza para colocar un elemento a la izquierda o a la
 
 [Try HTML Float](https://www.w3schools.com/html/tryit.asp?filename=tryhtml_layout_float)
 ![alt text](image-43.png)
+
+#### 18. CSS diseño de cuadrícula
+
+La propiedad CSS Grid Layout se utiliza para crear diseños de cuadrícula de dos dimensiones, es decir, diseños que se pueden dividir en columnas y filas, como una tabla.
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_layout_named)
+![alt text](image-44.png)
+
+#### 19. CSS Contenedor de cuadricula y elementos de cuadricula
+
+- `display: grid;`: Define un contenedor de cuadrícula.
+- `grid-template-columns`: Define el tamaño de las columnas de la cuadrícula.
+- `grid-template-rows`: Define el tamaño de las filas de la cuadrícula.
+- `grid-gap`: Define el espacio entre las filas y las columnas de la cuadrícula.
+- `grid-column-start`: Especifica en qué columna comienza un elemento.
+- `grid-column-end`: Especifica en qué columna termina un elemento.
+- `grid-row-start`: Especifica en qué fila comienza un elemento.
+- `grid-row-end`: Especifica en qué fila termina un elemento.
+- `grid-area`: Especifica en qué área de la cuadrícula se colocará un elemento.
+- `justify-self`: Alinea un elemento a lo largo del eje de la fila.
+- `align-self`: Alinea un elemento a lo largo del eje de la columna.
+- `grid-template-areas`: Define un nombre para cada área de la cuadrícula.
+- `grid-area`: Especifica en qué área de la cuadrícula se colocará un elemento.
+- `grid-column`: Especifica en qué columna comienza y termina un elemento.
+- `grid-row`: Especifica en qué fila comienza y termina un elemento.
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid)
+![alt text](image-45.png)
+
+#### 20. CSS Display Grid
+
+La propiedad CSS display se utiliza para cambiar el tipo de visualización de un elemento HTML. En el siguiente ejemplo, la propiedad display se establece en grid para el elemento `<div>`, lo que lo convierte en un contenedor de cuadrícula.
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_container)
+
+#### 21. CSS Display inline-grid
+
+La propiedad CSS display se utiliza para cambiar el tipo de visualización de un elemento HTML. En el siguiente ejemplo, la propiedad display se establece en inline-grid para el elemento `<div>`, lo que lo convierte en un contenedor de cuadrícula en línea.
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_display_inline-grid)
+![alt text](image-46.png)
+
+#### 22. CSS Grid Template Columns
+
+La propiedad CSS grid-template-columns se utiliza para definir el tamaño de las columnas de un contenedor de cuadrícula. En el siguiente ejemplo, la propiedad grid-template-columns se establece en 100px 100px 100px, lo que crea tres columnas de 100 píxeles de ancho cada una.
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_display_inline-columns)
+![alt text](image-60.png)
+
+#### 26. Ajuste de columnas
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_grid-column-gap)
+![alt text](image-61.png)
+
+#### 27. Ajuste de filas
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_grid-row-gap)
+![alt text](image-62.png)
+
+#### 28. Propiedad GAP
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_grid-gap2)
+![alt text](image-63.png)
+
+#### 29. Grid Lines
+
+[Try HTML Float](https://www.w3schools.com/css/tryit.asp?filename=trycss_grid_grid-lines)
