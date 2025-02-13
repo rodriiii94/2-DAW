@@ -1,1 +1,12 @@
-Realiza una página de 40 principales en la que uses 4 tablas de 3x3 con diferentes formatos: la primera 9 fotos grupos musicales, la segunda 9 videoclips, la tercera 9 enlaces @, y la cuarta 9 enlaces web a sus paginas oficiales
+Realiza una página de 40 principales en la que uses 4 tablas de 3x3 con diferentes formatos: la primera 9 fotos grupos musicales, la segunda 9 videoclips, la tercera 9 enlaces a correo, y la cuarta 9 enlaces web a sus paginas oficiales
+
+
+Trabajo 13
+
+Realizar una web de un formulario que nos permita:
+
+- Introducir nuestro de usuario a través de un input TEXT
+- Seleccionar nuestra edad con 4 Radius (De 1 a 20 años, de 21 a 40 años...)
+- A través de Checkbox poder elegir hasta 6 juegos favoritos
+- Con listas desplegables poder elegir una de cinco películas
+- 3 botones, Abrir, guardar e imprimir el formulario

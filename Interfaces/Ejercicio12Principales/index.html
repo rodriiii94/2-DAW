@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio 40 Principales - 3x3 Grid</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #ff1744;
+            --secondary-color: #3d5afe;
+            --accent-color: #ffea00;
+            --text-color: #ffffff;
+            --background-color: #1a237e;
+            --card-background: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: moveBackground 20s linear infinite;
+        }
+
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50%, 50%); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 2rem 0;
+            color: var(--accent-color);
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .grid-item {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .grid-item h2 {
+            font-size: 1.2rem;
+            margin: 1rem;
+            text-align: center;
+            color: var(--accent-color);
+        }
+
+        .grid-item iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .grid-item a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            height: 100%;
+            text-align: center;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .grid-item a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: all 0.6s;
+        }
+
+        .grid-item a:hover::before {
+            left: 100%;
+        }
+
+        .grid-item a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animación de ondas de sonido */
+        .sound-wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 10px;
+        }
+
+        .sound-wave span {
+            display: block;
+            width: 3px;
+            margin: 0 2px;
+            background-color: var(--accent-color);
+            animation: sound-wave-anim 1.2s infinite ease-in-out alternate;
+        }
+
+        @keyframes sound-wave-anim {
+            0% { height: 5px; }
+            100% { height: 30px; }
+        }
+
+        .sound-wave span:nth-child(2n) {
+            animation-delay: -0.4s;
+        }
+
+        .sound-wave span:nth-child(3n) {
+            animation-delay: -0.6s;
+        }
+
+        .sound-wave span:nth-child(4n) {
+            animation-delay: -0.8s;
+        }
+
+        .sound-wave span:nth-child(5n) {
+            animation-delay: -1s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Radio 40 Principales</h1>
+    </header>
+
+    <div class="container">
+        <!-- Sección 1: Fotos de grupos musicales -->
+        <div class="grid-container">
+            <div class="section-title">Fotos de Grupos Musicales</div>
+            <div class="grid-item">
+                <img src="https://www.mondosonoro.com/wp-content/uploads/2015/03/pignoise.jpg" alt="Pignoise">
+                <h2>Pignoise</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://imagenes.elpais.com/resizer/v2/S2LRLEL3ERGJ5CRRZFKZEFCO7M.jpg?auth=c9a6fa2576fa6f9c6d3cb4f24e10b31b2db65d7486cc451c9855df44ec450948&width=1200" alt="El Leño">
+                <h2>El Leño</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://i0.wp.com/losmejoresrock.com/wp-content/uploads/2020/01/Extremoduro-1993.jpg?fit=500%2C365&ssl=1" alt="Extremoduro">
+                <h2>Extremoduro</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Camela2011.jpg" alt="Camela">
+                <h2>Camela</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://images.ecestaticos.com/1n8yNGPOG60rrgy9pbgRMtNls2A=/135x8:2152x1514/1200x900/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F906%2Fa1a%2F498%2F906a1a49814f8fad9e920d0622380882.jpg" alt="AC/DC">
+                <h2>AC/DC</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2024/11/12/17314034713738.jpg" alt="Los Caños">
+                <h2>Los Caños</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://www.diariodeburgos.es/media/IMG/2021/5E6C65FE-CC05-A02E-376EEBAD7F3C6498.JPG" alt="Mecano">
+                <h2>Mecano</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://www.kissfm.es/wp-content/uploads/2022/12/hombres-g.jpg" alt="Hombres G">
+                <h2>Hombres G</h2>
+            </div>
+            <div class="grid-item">
+                <img src="https://s.france24.com/media/display/c5b34a38-0c37-11ec-9db2-005056a97e36/w:1280/p:4x3/ABBA.jpg" alt="ABBA">
+                <h2>ABBA</h2>
+            </div>
+        </div>
+
+        <!-- Sección 2: Videoclips -->
+        <div class="grid-container">
+            <div class="section-title">Videoclips</div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/9bZkp7q19f0?si=vgyBRX0GJP9yQUGE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/d4USBOdRhOc" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/CevxZvSJLk8" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/JGwWNGJdvx8" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/kJQP7kiw5Fk" allowfullscreen></iframe>
+            </div>
+            <div class="grid-item">
+                <iframe src="https://www.youtube.com/embed/CevxZvSJLk8" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Sección 3: Enlaces a canciones -->
+        <div class="grid-container">
+            <div class="section-title">Enlaces a Canciones</div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/6EJV480BOQwkqENV8wGt9Y?si=1c32011549704a79" target="_blank">Metal Gear</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/2X485T9Z5Ly0xyaghN73ed?si=cc379574d9d243c6" target="_blank">Let it happen</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/3L7dybBwSSkt49QR8H6SEq?si=d5308ec69eae4102" target="_blank">No se</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/2SNccosiaYZUS39BCvljxD?si=24d2116cc26c4bec" target="_blank">Tributo</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/4QTlxavdQGUVitxAvQqqkU?si=56dea457b7d448a4" target="_blank">Mmhmm</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/65SfiFQbX26Nxf7x0z6rG8?si=1c3324a4a21e42fc" target="_blank">Intro</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/5wG3HvLhF6Y5KTGlK0IW3J?si=64a4424a156c40f7" target="_blank">Trance</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/2MjzxP6DaIal6T1DPkPj1D?si=b754ae17cd4040d0" target="_blank">MUEREN X MATARME</a></div>
+            <div class="grid-item"><a href="https://open.spotify.com/track/6fwdbPMwP1zVStm8FybmkO?si=d503c8fae61d48bb" target="_blank">X</a></div>
+        </div>
+
+        <!-- Sección 4: Enlaces a páginas oficiales -->
+        <div class="grid-container">
+            <div class="section-title">Páginas Oficiales</div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/ABBA" target="_blank">ABBA</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/Mecano_(banda)" target="_blank">Mecano</a></div>
+            <div class="grid-item"><a href="https://disobeysociety.net/" target="_blank">Disobey</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/AC/DC" target="_blank">AC/DC</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/Kiss" target="_blank">KISS</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/Hombres_G" target="_blank">Hombres G</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/Le%C3%B1o" target="_blank">El Leño</a></div>
+            <div class="grid-item"><a href="https://es.wikipedia.org/wiki/Travis_Scott" target="_blank">Travis Scott</a></div>
+            <div class="grid-item"><a href="https://www.youtube.com/channel/UCng9LRN8S9tMAFmACxsY8kg" target="_blank">Hoke</a></div>
+        </div>
+    </div>
+
+    <!-- Animación de ondas de sonido -->
+    <div class="sound-wave">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</body>
+</html>
