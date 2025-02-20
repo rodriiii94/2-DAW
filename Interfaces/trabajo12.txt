@@ -10,3 +10,7 @@ Realizar una web de un formulario que nos permita:
 - A través de Checkbox poder elegir hasta 6 juegos favoritos
 - Con listas desplegables poder elegir una de cinco películas
 - 3 botones, Abrir, guardar e imprimir el formulario
+
+Trabajo 14
+
+Realiza un index que su vez tenga 9 páginas enlazadas con: barra de iconos horizontal, cortinas, plegable acordeon, encabezados de pestañas, pestañas flotantes, barra de navegación con iconos, busqueda en menú y en barra. y barra lateral fija
