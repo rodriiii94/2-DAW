@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icon Navigation Bar</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Icon Navigation Bar Example</h1>
+    <p>The icon navigation bar is fixed at the bottom of the page.</p>
+    <div class="navbar">
+        <a class="active" href="#"><i>&#127968;</i> Home</a>
+        <a href="#"><i>&#128100;</i> About</a>
+        <a href="#"><i>&#128231;</i> Contact</a>
+        <a href="#"><i>&#128193;</i> Portfolio</a>
+    </div>
+    <br><br>
+    <a href="index.html">Back to Index</a>
+</body>
+</html>
+
