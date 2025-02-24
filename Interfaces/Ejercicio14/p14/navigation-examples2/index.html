@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos de Navegación Mejorados</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fad961 0%, #f76b1c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #f39c12;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            background-color: #e67e22;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ejemplos de Navegación Mejorados</h1>
+        <div class="grid">
+            <div class="card">
+                <a href="barra-iconos-horizontal.html">Barra de Iconos Horizontal</a>
+            </div>
+            <div class="card">
+                <a href="menu-cortina.html">Menú Cortina</a>
+            </div>
+            <div class="card">
+                <a href="menu-acordeon.html">Menú Acordeón</a>
+            </div>
+            <div class="card">
+                <a href="pestanas.html">Pestañas</a>
+            </div>
+            <div class="card">
+                <a href="pestanas-flotantes.html">Pestañas Flotantes</a>
+            </div>
+            <div class="card">
+                <a href="barra-navegacion-iconos.html">Barra de Navegación con Iconos</a>
+            </div>
+            <div class="card">
+                <a href="menu-busqueda.html">Menú con Búsqueda</a>
+            </div>
+            <div class="card">
+                <a href="barra-navegacion-busqueda.html">Barra de Navegación con Búsqueda</a>
+            </div>
+            <div class="card">
+                <a href="barra-lateral-fija.html">Barra Lateral Fija</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

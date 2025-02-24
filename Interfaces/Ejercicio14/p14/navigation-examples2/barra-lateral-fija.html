@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra Lateral Fija Mejorada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #ecf0f1;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #3498db;
+            overflow-x: hidden;
+            padding-top: 20px;
+            transition: 0.5s;
+        }
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #ecf0f1;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            color: #f39c12;
+            background-color: #2980b9;
+        }
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        .openbtn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            z-index: 2;
+        }
+        .openbtn:hover {
+            background-color: #2980b9;
+        }
+        .main {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.5s;
+        }
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 0;
+            }
+            .main {
+                margin-left: 0;
+            }
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#"><i class="fas fa-home"></i> Inicio</a>
+        <a href="#"><i class="fas fa-info-circle"></i> Acerca de</a>
+        <a href="#"><i class="fas fa-envelope"></i> Servicios</a>
+        <a href="#"><i class="fas fa-phone"></i> Contacto</a>
+    </div>
+
+    <div id="main" class="main">
+        <button class="openbtn" onclick="openNav()">&#9776; Abrir Menú</button>
+        <h1>Ejemplo de Barra Lateral Fija Mejorada</h1>
+        <p>Este ejemplo muestra una barra lateral fija con un botón para alternar su visibilidad en diseños responsivos. La barra lateral se puede abrir y cerrar, y se ajusta para pantallas más pequeñas.</p>
+        <a href="index.html" class="back-link">Volver al Índice</a>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        // Cerrar la barra lateral por defecto en pantallas pequeñas
+        if (window.innerWidth <= 768) {
+            closeNav();
+        }
+    </script>
+</body>
+</html>
+

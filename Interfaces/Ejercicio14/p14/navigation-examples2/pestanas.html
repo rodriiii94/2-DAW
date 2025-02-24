@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pestañas Mejoradas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ecf0f1;
+            margin: 0;
+            padding: 20px;
+        }
+        .tab {
+            overflow: hidden;
+            border: 1px solid #3498db;
+            background-color: #3498db;
+            border-radius: 5px 5px 0 0;
+        }
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            color: #fff;
+        }
+        .tab button:hover {
+            background-color: #2980b9;
+        }
+        .tab button.active {
+            background-color: #e74c3c;
+            border-bottom: 2px solid #c0392b;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #3498db;
+            border-top: none;
+            border-radius: 0 0 5px 5px;
+            background-color: #fff;
+        }
+        h1, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+        }
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-link:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejemplo de Pestañas Mejoradas</h1>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Tab1')"><i class="fas fa-home"></i> Inicio</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab2')"><i class="fas fa-info-circle"></i> Acerca de</button>
+        <button class="tablinks" onclick="openTab(event, 'Tab3')"><i class="fas fa-envelope"></i> Contacto</button>
+    </div>
+    <div id="Tab1" class="tabcontent">
+        <h3>Inicio</h3>
+        <p>Bienvenido a nuestra página de inicio. Aquí encontrarás toda la información más reciente sobre nuestros productos y servicios.</p>
+    </div>
+    <div id="Tab2" class="tabcontent">
+        <h3>Acerca de</h3>
+        <p>Conoce más sobre la historia de nuestra empresa, nuestra misión y nuestros valores. Nos comprometemos a ofrecer la mejor experiencia a nuestros clientes.</p>
+    </div>
+    <div id="Tab3" class="tabcontent">
+        <h3>Contacto</h3>
+        <p>Ponte en contacto con nosotros para cualquier consulta o soporte. ¡Estamos aquí para ayudarte!</p>
+    </div>
+    <a href="index.html" class="back-link">Volver al Índice</a>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Abrir la primera pestaña por defecto
+        document.getElementsByClassName("tablinks")[0].click();
+    </script>
+</body>
+</html>
+

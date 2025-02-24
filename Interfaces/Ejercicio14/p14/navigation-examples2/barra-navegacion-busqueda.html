@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra de Navegación con Búsqueda Mejorada</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ecf0f1;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #3498db;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 12px 16px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #2980b9;
+            color: white;
+        }
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .navbar input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+        }
+        .navbar .search-container button {
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #2980b9;
+            font-size: 17px;
+            border: none;
+            cursor: pointer;
+            border-radius: 0 5px 5px 0;
+            color: white;
+        }
+        .navbar .search-container button:hover {
+            background: #2c3e50;
+        }
+        .content {
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .back-link:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="#inicio">Inicio</a>
+            <a href="#acerca">Acerca de</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="search-container">
+            <form action="#">
+                <input type="text" placeholder="Buscar.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Ejemplo de Barra de Navegación con Búsqueda Mejorada</h1>
+        <p>Este ejemplo muestra una barra de navegación con una funcionalidad de búsqueda integrada. La barra de búsqueda es responsiva y fácilmente accesible.</p>
+        <a href="index.html" class="back-link">Volver al Índice</a>
+    </div>
+</body>
+</html>
+

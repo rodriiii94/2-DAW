@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Navigation Examples</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            padding: 40px;
+            width: 80%;
+            max-width: 800px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enhanced Navigation Examples</h1>
+        <div class="grid">
+            <div class="card">
+                <a href="horizontal-icon-bar.html">Horizontal Icon Bar</a>
+            </div>
+            <div class="card">
+                <a href="curtain-menu.html">Curtain Menu</a>
+            </div>
+            <div class="card">
+                <a href="accordion-menu.html">Accordion Menu</a>
+            </div>
+            <div class="card">
+                <a href="tab-headers.html">Tab Headers</a>
+            </div>
+            <div class="card">
+                <a href="floating-tabs.html">Floating Tabs</a>
+            </div>
+            <div class="card">
+                <a href="icon-nav-bar.html">Icon Navigation Bar</a>
+            </div>
+            <div class="card">
+                <a href="menu-search.html">Menu Search</a>
+            </div>
+            <div class="card">
+                <a href="navbar-search.html">Navbar Search</a>
+            </div>
+            <div class="card">
+                <a href="fixed-sidebar.html">Fixed Sidebar</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
