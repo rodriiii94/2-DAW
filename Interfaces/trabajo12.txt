@@ -14,3 +14,6 @@ Realizar una web de un formulario que nos permita:
 Trabajo 14
 
 Realiza un index que su vez tenga 9 páginas enlazadas con: barra de iconos horizontal, cortinas, plegable acordeon, encabezados de pestañas, pestañas flotantes, barra de navegación con iconos, busqueda en menú y en barra. y barra lateral fija
+
+Trabajo 15
+Realiza un index que su vez tenga 9 paginas enlazadas con: navegacion lateral animada, insercion navegación lateral con opacidad, botones de navegación lateral, barra lateral con iconos, menú desplazable horizontal, menú desplazable vertical, links con borde, ocultar menú al desplazarse y reducir menú al desplazarse.
