@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Multimedia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo" id="logo">Tienda Multimedia</div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar productos...">
+            <button id="search-button">Buscar</button>
+        </div>
+        <div class="header-actions">
+            <button id="language-toggle">English</button>
+            <div class="cart-icon" id="cart-icon">
+                🛒 <span id="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="products-container">
+            <h2 id="books-title">Libros</h2>
+            <div class="products-row" id="books-row">
+                <!-- Books will be inserted here by JavaScript -->
+            </div>
+
+            <h2 id="audiobooks-title">Audiolibros</h2>
+            <div class="products-row" id="audiobooks-row">
+                <!-- Audiobooks will be inserted here by JavaScript -->
+            </div>
+
+            <h2 id="movies-title">Películas</h2>
+            <div class="products-row" id="movies-row">
+                <!-- Movies will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="cart-title">Carrito de Compra</h2>
+            <div id="cart-items">
+                <!-- Cart items will be inserted here by JavaScript -->
+            </div>
+            <div class="cart-summary">
+                <p id="cart-total-label">Total: <span id="cart-total">0.00</span>€</p>
+                <button id="clear-cart">Vaciar Carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p id="footer-text">© 2025 Tienda Multimedia. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
